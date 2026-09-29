@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.algaworks.algashop.ordering.domain.model.CustomerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-29T03:11:04.235Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.014">
+  <properties/>
+  <testcase name="testingCustomer()" classname="com.algaworks.algashop.ordering.domain.model.CustomerTest" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
