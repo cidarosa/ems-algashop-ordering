@@ -1,10 +1,10 @@
 package com.algaworks.algashop.ordering.domain.model;
 
+import com.algaworks.algashop.ordering.domain.utility.IdGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 class CustomerTest {
 
@@ -12,7 +12,7 @@ class CustomerTest {
     public void testingCustomer(){
 
         Customer customer = new Customer(
-                UUID.randomUUID(),
+                IdGenerator.generateTimBasedUUID(),
                 "John Snow",
                 LocalDate.of(1991, 7,5),
                 "johsnow@gmail.com",
@@ -22,6 +22,11 @@ class CustomerTest {
                 OffsetDateTime.now()
         );
         customer.addLoyaltPoint(10);
+
+        System.out.println(customer.id());
+        System.out.println(IdGenerator.generateTimBasedUUID());
     }
+
+
 
 }
