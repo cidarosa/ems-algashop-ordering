@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.model.CustomerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-02T21:43:30.235Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.015">
-  <properties/>
-  <testcase name="testingCustomer()" classname="com.algaworks.algashop.ordering.domain.model.CustomerTest" time="0.012"/>
-  <system-out><![CDATA[01a0fe92-84c3-7baf-ae20-aaa7db25356c
-01a0fe92-84c6-7e7f-803e-fd69b8ad728a
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
