@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.entity.CustomerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-03T21:15:03.658Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.036">
+<testsuite name="com.algaworks.algashop.ordering.domain.entity.CustomerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-03T21:57:43.550Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.029">
   <properties/>
-  <testcase name="given_unarchivedCustomer_whenArchive_shouldAnonumize()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.025"/>
-  <testcase name="given_invalidEmail_whenTryUpdateCustomer_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.004"/>
-  <testcase name="given_archivedCustomer_whenTryToUpdate_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.001"/>
-  <testcase name="given_invalidEmail_whenTryCreateCustomer_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.001"/>
+  <testcase name="given_brandNewCustomer_whenAddInvalidLoyaltyPoints_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.025"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

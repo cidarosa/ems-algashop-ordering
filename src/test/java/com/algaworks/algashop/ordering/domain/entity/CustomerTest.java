@@ -55,7 +55,7 @@ class CustomerTest {
     }
 
     @Test
-    void given_unarchivedCustomer_whenArchive_shouldAnonumize() {
+    void given_unarchivedCustomer_whenArchive_shouldAnonymize() {
 
         Customer customer = new Customer(
                 IdGenerator.generateTimBasedUUID(),
@@ -78,7 +78,6 @@ class CustomerTest {
                 c -> assertThat(c.birthDate()).isNull(),
                 c -> assertThat(c.isPromotionNotificationAllowed()).isFalse()
         );
-
     }
 
     @Test
@@ -112,6 +111,49 @@ class CustomerTest {
 
         assertThatExceptionOfType(CustomerArchivedException.class)
                 .isThrownBy(customer::disablePromotionNotifications);
+    }
+
+    @Test
+    void given_brandNewCustomer_whenAddLoyaltyPoints_shouldSumPoints() {
+
+        Customer customer = new Customer(
+                IdGenerator.generateTimBasedUUID(),
+                "John Snow",
+                LocalDate.of(1991, 7, 5),
+                "john.snow@gmail.com",
+                "478-256-2504",
+                "255-08-0578",
+                false,
+                OffsetDateTime.now()
+        );
+
+      customer.addLoyaltyPoints(10);
+      customer.addLoyaltyPoints(20);
+
+      assertThat(customer.loyaltyPoints()).isEqualTo(30);
+    }
+
+    @Test
+    void given_brandNewCustomer_whenAddInvalidLoyaltyPoints_shouldGenerateException() {
+
+        Customer customer = new Customer(
+                IdGenerator.generateTimBasedUUID(),
+                "John Snow",
+                LocalDate.of(1991, 7, 5),
+                "john.snow@gmail.com",
+                "478-256-2504",
+                "255-08-0578",
+                false,
+                OffsetDateTime.now()
+        );
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> customer.addLoyaltyPoints(0));
+
+         assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> customer.addLoyaltyPoints(-10));
+
+
     }
 
 }
