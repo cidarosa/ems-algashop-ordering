@@ -1,7 +1,7 @@
 package com.algaworks.algashop.ordering.domain.entity;
 
+import com.algaworks.algashop.ordering.domain.exception.CustomerArchivedException;
 import com.algaworks.algashop.ordering.domain.validator.FieldValidations;
-import org.apache.commons.validator.routines.EmailValidator;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -31,7 +31,7 @@ public class Customer {
                     String email, String phone,
                     String document,
                     Boolean promotionNotificationAllowed,
-                    OffsetDateTime registeredAt,
+                    Boolean archived, OffsetDateTime registeredAt,
                     OffsetDateTime archivedAt,
                     Integer loyaltyPoints) {
         this.setId(id);
@@ -69,6 +69,7 @@ public class Customer {
 
     public void archive() {
 
+        verifyIfChangeble();
         this.setArchived(true);
         this.setArchivedAt(OffsetDateTime.now());
         this.setFullName("Anonymous");
@@ -76,27 +77,31 @@ public class Customer {
         this.setPhone("000-000-0000");
         this.setDocument("000-00-0000");
         this.setBirthDate(null);
-
-
+        this.setPromotionNotificationAllowed(false);
     }
 
     public void enablePromotionNotifications() {
+        verifyIfChangeble();
         setPromotionNotificationAllowed(true);
     }
 
     public void disablePromotionNotifications() {
+        verifyIfChangeble();
         setPromotionNotificationAllowed(false);
     }
 
     public void changeName(String fullName) {
+        verifyIfChangeble();
         setFullName(fullName);
     }
 
     public void changeEmail(String email) {
+        verifyIfChangeble();
         setEmail(email);
     }
 
     public void changePhone(String phone) {
+        verifyIfChangeble();
         setPhone(phone);
     }
 
@@ -225,6 +230,12 @@ public class Customer {
         Objects.requireNonNull(loyaltyPoints);
 
         this.loyaltyPoints = loyaltyPoints;
+    }
+
+    private void verifyIfChangeble() {
+        if (this.isArchived()){
+            throw new CustomerArchivedException();
+        }
     }
 
     @Override
