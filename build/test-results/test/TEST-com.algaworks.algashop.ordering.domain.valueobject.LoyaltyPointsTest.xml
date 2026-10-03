@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPointsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-03T23:04:46.299Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.028">
+  <properties/>
+  <testcase name="shouldGenerateWithValue()" classname="com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPointsTest" time="0.02"/>
+  <testcase name="shouldNotAddValue()" classname="com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPointsTest" time="0.004"/>
+  <testcase name="shouldAddValue()" classname="com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPointsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
