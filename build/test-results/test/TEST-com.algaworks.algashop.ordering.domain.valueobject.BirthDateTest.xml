@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.valueobject.BirthDateTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-04T01:18:13.767Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.033">
-  <properties/>
-  <testcase name="shouldCalculatedAgre()" classname="com.algaworks.algashop.ordering.domain.valueobject.BirthDateTest" time="0.024"/>
-  <testcase name="shouldGenerateWithValidDate()" classname="com.algaworks.algashop.ordering.domain.valueobject.BirthDateTest" time="0.003"/>
-  <testcase name="given_futureDate_souldGenerateException()" classname="com.algaworks.algashop.ordering.domain.valueobject.BirthDateTest" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

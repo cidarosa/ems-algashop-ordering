@@ -10,4 +10,7 @@ public class ErrorMessages {
     public static final String VALIDATION_ERROR_EMAIL_IS_INVALID = "Email is invalid";
 
     public static final String ERROR_CUSTOMER_ARCHIVED = "Customer is archived it cannot be changed";
+
+    public static final String VALIDATION_ERROR_DOCUMENT_IS_NULL = "Document cannot be null";
+    public static final String VALIDATION_ERROR_DOCUMENT_IS_BLANK = "Document cannot be blank";
 }
