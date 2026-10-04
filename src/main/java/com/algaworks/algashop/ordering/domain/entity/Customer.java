@@ -7,6 +7,7 @@ import com.algaworks.algashop.ordering.domain.valueobject.Document;
 import com.algaworks.algashop.ordering.domain.valueobject.Email;
 import com.algaworks.algashop.ordering.domain.valueobject.FullName;
 import com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPoints;
+import com.algaworks.algashop.ordering.domain.valueobject.Phone;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -20,7 +21,7 @@ public class Customer {
     private FullName fullName;
     private BirthDate birthDate;
     private Email email;
-    private String phone;
+    private Phone phone;
     private Document document;
     private Boolean promotionNotificationAllowed;
     private Boolean archived;
@@ -29,7 +30,7 @@ public class Customer {
     private LoyaltyPoints loyaltyPoints;
 
     public Customer(CustomerId id, FullName fullName, BirthDate birthDate,
-                    Email email, String phone,
+                    Email email, Phone phone,
                     Document document,
                     Boolean promotionNotificationAllowed,
                     Boolean archived, OffsetDateTime registeredAt,
@@ -49,7 +50,7 @@ public class Customer {
     }
 
     public Customer(CustomerId id, FullName fullName, BirthDate birthDate,
-                    Email email, String phone, Document document,
+                    Email email, Phone phone, Document document,
                     Boolean promotionNotificationAllowed,
                     OffsetDateTime registeredAt) {
         this.setId(id);
@@ -78,7 +79,7 @@ public class Customer {
         this.setArchivedAt(OffsetDateTime.now());
         this.setFullName(new FullName("Anonymous", "Anonymous"));
         this.setEmail(new Email(UUID.randomUUID() + "@anonymous.com"));
-        this.setPhone("000-000-0000");
+        this.setPhone(new Phone( "000-000-0000"));
         this.setDocument(new Document("000-00-0000"));
         this.setBirthDate(null);
         this.setPromotionNotificationAllowed(false);
@@ -104,7 +105,7 @@ public class Customer {
         setEmail(email);
     }
 
-    public void changePhone(String phone) {
+    public void changePhone(Phone phone) {
         verifyIfChangeble();
         setPhone(phone);
     }
@@ -130,7 +131,7 @@ public class Customer {
         return email;
     }
 
-    public String phone() {
+    public Phone phone() {
         return phone;
     }
 
@@ -181,7 +182,7 @@ public class Customer {
         this.email = email;
     }
 
-    private void setPhone(String phone) {
+    private void setPhone(Phone phone) {
 
         Objects.requireNonNull(phone);
 

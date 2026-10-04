@@ -9,7 +9,7 @@ import java.time.LocalDate;
 class BirthDateTest {
 
     @Test
-    void shouldCalculatedAgre() {
+    void shouldCalculateAge() {
 
         BirthDate birthDate = new BirthDate(LocalDate.of(1991, 7, 5));
 
@@ -19,7 +19,7 @@ class BirthDateTest {
 
 
     @Test
-    void shouldGenerateWithValidDate() {
+    void given_validPastDate_shouldCriateBirthDate() {
 
         BirthDate birthDate = new BirthDate(LocalDate.of(1991, 7, 5));
 
@@ -33,5 +33,13 @@ class BirthDateTest {
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new BirthDate(LocalDate.of(2027, 7, 5)));
     }
+
+    @Test
+    void given_nullDate_souldGenerateException() {
+
+        Assertions.assertThatExceptionOfType(NullPointerException.class)
+                .isThrownBy(() -> new BirthDate(null));
+    }
+
 
 }

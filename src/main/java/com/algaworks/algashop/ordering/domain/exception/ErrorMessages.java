@@ -13,4 +13,10 @@ public class ErrorMessages {
 
     public static final String VALIDATION_ERROR_DOCUMENT_IS_NULL = "Document cannot be null";
     public static final String VALIDATION_ERROR_DOCUMENT_IS_BLANK = "Document cannot be blank";
+    public static final String VALIDATION_ERROR_DOCUMENT_IS_EMPTY = "Document cannot be empty";
+
+    public static final String VALIDATION_ERROR_PHONE_IS_NULL = "Phone cannot be null";
+    public static final String VALIDATION_ERROR_PHONE_IS_BLANK = "Phone cannot be blank";
+    public static final String VALIDATION_ERROR_PHONE_IS_EMPTY = "Phone cannot be empty";
+
 }

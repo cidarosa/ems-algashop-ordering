@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class EmailTest {
 
     @Test
-    void shouldAddAValidEmail(){
+    void given_validEmail_shouldCreateEmail(){
 
         Email email = new Email("john.snow@gmail.com");
 
@@ -15,16 +15,25 @@ class EmailTest {
 
     }
     @Test
-    void shouldNotAddInvalidEmail(){
+    void given_invalidEmail_souldGenerateException(){
 
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Email("jon.gmail.com"));
     }
 
     @Test
-    void shouldNotAddEmailIsBlank(){
+    void given_blankEmail_souldGenerateException(){
 
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Email(""));
     }
+
+     @Test
+    void given_emptyEmail_souldGenerateException(){
+
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new Email("   "));
+    }
+
+
 }

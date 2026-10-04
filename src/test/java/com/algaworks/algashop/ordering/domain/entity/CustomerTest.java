@@ -8,6 +8,7 @@ import com.algaworks.algashop.ordering.domain.valueobject.Document;
 import com.algaworks.algashop.ordering.domain.valueobject.Email;
 import com.algaworks.algashop.ordering.domain.valueobject.FullName;
 import com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPoints;
+import com.algaworks.algashop.ordering.domain.valueobject.Phone;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -28,7 +29,7 @@ class CustomerTest {
                                     new FullName("John", "Snow"),
                                     new BirthDate(LocalDate.of(1991, 7, 5)),
                                     new Email("invalid"),
-                                    "478-256-2504",
+                                    new Phone("478-256-2504"),
                                     new Document("255-08-0578"),
                                     false,
                                     OffsetDateTime.now()
@@ -45,7 +46,7 @@ class CustomerTest {
                 new FullName("John", "Snow"),
                 new BirthDate(LocalDate.of(1991, 7, 5)),
                 new Email("john.snow@gmail.com"),
-                "478-256-2504",
+                new Phone("478-256-2504"),
                 new Document("255-08-0578"),
                 false,
                 OffsetDateTime.now()
@@ -67,7 +68,7 @@ class CustomerTest {
                 new FullName("John", "Snow"),
                 new BirthDate(LocalDate.of(1991, 7, 5)),
                 new Email("john.snow@gmail.com"),
-                "478-256-2504",
+                new Phone("478-256-2504"),
                 new Document("255-08-0578"),
                 false,
                 OffsetDateTime.now()
@@ -78,7 +79,7 @@ class CustomerTest {
         assertWith(customer,
                 c -> assertThat(c.fullName()).isEqualTo(new FullName("Anonymous", "Anonymous")),
                 c -> assertThat(c.email()).isNotEqualTo(new Email("john.snow@gmail.com")),
-                c -> assertThat(c.phone()).isEqualTo("000-000-0000"),
+                c -> assertThat(c.phone()).isEqualTo(new Phone("000-000-0000")),
                 c -> assertThat(c.document()).isEqualTo(new Document("000-00-0000")),
                 c -> assertThat(c.birthDate()).isNull(),
                 c -> assertThat(c.isPromotionNotificationAllowed()).isFalse()
@@ -93,7 +94,7 @@ class CustomerTest {
                 new FullName("Anonymous", "Anonymous"),
                 null,
                 new Email("anonymous@anonymous.com"),
-                "000-000-0000",
+                new Phone("000-000-0000"),
                 new Document("000-00-0000"),
                 false,
                 true,
@@ -109,7 +110,7 @@ class CustomerTest {
                 .isThrownBy(() -> customer.changeEmail(new Email("email@gmail.com")));
 
         assertThatExceptionOfType(CustomerArchivedException.class)
-                .isThrownBy(() -> customer.changePhone("123-123-1234"));
+                .isThrownBy(() -> customer.changePhone(new Phone("123-123-1234")));
 
         assertThatExceptionOfType(CustomerArchivedException.class)
                 .isThrownBy(customer::enablePromotionNotifications);
@@ -126,7 +127,7 @@ class CustomerTest {
                 new FullName("John", "Snow"),
                 new BirthDate(LocalDate.of(1991, 7, 5)),
                 new Email("john.snow@gmail.com"),
-                "478-256-2504",
+                new Phone("478-256-2504"),
                 new Document("255-08-0578"),
                 false,
                 OffsetDateTime.now()
@@ -146,7 +147,7 @@ class CustomerTest {
                 new FullName("John", "Snow"),
                 new BirthDate(LocalDate.of(1991, 7, 5)),
                 new Email("john.snow@gmail.com"),
-                "478-256-2504",
+                new Phone("478-256-2504"),
                 new Document("255-08-0578"),
                 false,
                 OffsetDateTime.now()
