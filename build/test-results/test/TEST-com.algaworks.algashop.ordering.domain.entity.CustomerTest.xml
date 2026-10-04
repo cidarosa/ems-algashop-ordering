@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.entity.CustomerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-04T21:11:35.668Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.038">
+<testsuite name="com.algaworks.algashop.ordering.domain.entity.CustomerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-04T22:28:10.755Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.039">
   <properties/>
-  <testcase name="given_brandNewCustomer_whenAddInvalidLoyaltyPoints_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.023"/>
-  <testcase name="given_unarchivedCustomer_whenArchive_shouldAnonymize()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.005"/>
+  <testcase name="given_brandNewCustomer_whenAddInvalidLoyaltyPoints_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.026"/>
+  <testcase name="given_unarchivedCustomer_whenArchive_shouldAnonymize()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.004"/>
   <testcase name="given_invalidEmail_whenTryUpdateCustomer_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.001"/>
   <testcase name="given_archivedCustomer_whenTryToUpdate_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.001"/>
-  <testcase name="given_brandNewCustomer_whenAddLoyaltyPoints_shouldSumPoints()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.002"/>
+  <testcase name="given_brandNewCustomer_whenAddLoyaltyPoints_shouldSumPoints()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.001"/>
   <testcase name="given_invalidEmail_whenTryCreateCustomer_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.CustomerTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
