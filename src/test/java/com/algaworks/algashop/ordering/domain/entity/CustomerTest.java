@@ -2,6 +2,7 @@ package com.algaworks.algashop.ordering.domain.entity;
 
 import com.algaworks.algashop.ordering.domain.exception.CustomerArchivedException;
 
+import com.algaworks.algashop.ordering.domain.valueobject.BirthDate;
 import com.algaworks.algashop.ordering.domain.valueobject.CustomerId;
 import com.algaworks.algashop.ordering.domain.valueobject.FullName;
 import com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPoints;
@@ -23,7 +24,7 @@ class CustomerTest {
                             new Customer(
                                     new CustomerId(),
                                     new FullName("John", "Snow"),
-                                    LocalDate.of(1991, 7, 5),
+                                    new BirthDate(LocalDate.of(1991, 7, 5)),
                                     "invalid",
                                     "478-256-2504",
                                     "255-08-0578",
@@ -40,7 +41,7 @@ class CustomerTest {
         Customer customer = new Customer(
                 new CustomerId(),
                 new FullName("John", "Snow"),
-                LocalDate.of(1991, 7, 5),
+                new BirthDate(LocalDate.of(1991, 7, 5)),
                 "john.snow@gmail.com",
                 "478-256-2504",
                 "255-08-0578",
@@ -62,7 +63,7 @@ class CustomerTest {
         Customer customer = new Customer(
                 new CustomerId(),
                 new FullName("John", "Snow"),
-                LocalDate.of(1991, 7, 5),
+                new BirthDate(LocalDate.of(1991, 7, 5)),
                 "john.snow@gmail.com",
                 "478-256-2504",
                 "255-08-0578",
@@ -121,7 +122,7 @@ class CustomerTest {
         Customer customer = new Customer(
                 new CustomerId(),
                 new FullName("John", "Snow"),
-                LocalDate.of(1991, 7, 5),
+                new BirthDate(LocalDate.of(1991, 7, 5)),
                 "john.snow@gmail.com",
                 "478-256-2504",
                 "255-08-0578",
@@ -141,7 +142,7 @@ class CustomerTest {
         Customer customer = new Customer(
                 new CustomerId(),
                 new FullName("John", "Snow"),
-                LocalDate.of(1991, 7, 5),
+                new BirthDate(LocalDate.of(1991, 7, 5)),
                 "john.snow@gmail.com",
                 "478-256-2504",
                 "255-08-0578",

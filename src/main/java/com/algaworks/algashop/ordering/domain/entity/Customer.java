@@ -2,6 +2,7 @@ package com.algaworks.algashop.ordering.domain.entity;
 
 import com.algaworks.algashop.ordering.domain.exception.CustomerArchivedException;
 import com.algaworks.algashop.ordering.domain.validator.FieldValidations;
+import com.algaworks.algashop.ordering.domain.valueobject.BirthDate;
 import com.algaworks.algashop.ordering.domain.valueobject.CustomerId;
 import com.algaworks.algashop.ordering.domain.valueobject.FullName;
 import com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPoints;
@@ -13,14 +14,13 @@ import java.util.UUID;
 
 import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VALIDATION_ERROR_BIRTHDATE_MUST_IN_PAST;
 import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VALIDATION_ERROR_EMAIL_IS_INVALID;
-import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VALIDATION_ERROR_FULLNAME_IS_BLANK;
 import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VALIDATION_ERROR_FULLNAME_IS_NULL;
 
 public class Customer {
 
     private CustomerId id;
     private FullName fullName;
-    private LocalDate birthDate;
+    private BirthDate birthDate;
     private String email;
     private String phone;
     private String document;
@@ -30,7 +30,7 @@ public class Customer {
     private OffsetDateTime archivedAt;
     private LoyaltyPoints loyaltyPoints;
 
-    public Customer(CustomerId id, FullName fullName, LocalDate birthDate,
+    public Customer(CustomerId id, FullName fullName, BirthDate birthDate,
                     String email, String phone,
                     String document,
                     Boolean promotionNotificationAllowed,
@@ -50,7 +50,7 @@ public class Customer {
         this.setLoyaltyPoints(loyaltyPoints);
     }
 
-    public Customer(CustomerId id, FullName fullName, LocalDate birthDate,
+    public Customer(CustomerId id, FullName fullName, BirthDate birthDate,
                     String email, String phone, String document,
                     Boolean promotionNotificationAllowed,
                     OffsetDateTime registeredAt) {
@@ -128,7 +128,7 @@ public class Customer {
         return fullName;
     }
 
-    public LocalDate birthDate() {
+    public BirthDate birthDate() {
         return birthDate;
     }
 
@@ -171,16 +171,16 @@ public class Customer {
         this.fullName = fullName;
     }
 
-    private void setBirthDate(LocalDate birthDate) {
+    private void setBirthDate(BirthDate birthDate) {
 
         if (birthDate == null) {
             this.birthDate = null;
             return;
         }
 
-        if (birthDate.isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException(VALIDATION_ERROR_BIRTHDATE_MUST_IN_PAST);
-        }
+//        if (birthDate.isAfter(LocalDate.now())) {
+//            throw new IllegalArgumentException(VALIDATION_ERROR_BIRTHDATE_MUST_IN_PAST);
+//        }
 
         this.birthDate = birthDate;
     }
@@ -234,10 +234,6 @@ public class Customer {
     private void setLoyaltyPoints(LoyaltyPoints loyaltyPoints) {
 
         Objects.requireNonNull(loyaltyPoints);
-
-//        if (loyaltyPoints < 0) {
-//            throw new IllegalArgumentException();
-//        }
 
         this.loyaltyPoints = loyaltyPoints;
     }
