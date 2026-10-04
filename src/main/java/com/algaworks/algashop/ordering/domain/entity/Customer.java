@@ -1,21 +1,17 @@
 package com.algaworks.algashop.ordering.domain.entity;
 
 import com.algaworks.algashop.ordering.domain.exception.CustomerArchivedException;
-import com.algaworks.algashop.ordering.domain.validator.FieldValidations;
 import com.algaworks.algashop.ordering.domain.valueobject.BirthDate;
 import com.algaworks.algashop.ordering.domain.valueobject.CustomerId;
 import com.algaworks.algashop.ordering.domain.valueobject.Document;
+import com.algaworks.algashop.ordering.domain.valueobject.Email;
 import com.algaworks.algashop.ordering.domain.valueobject.FullName;
 import com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPoints;
 
-import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VALIDATION_ERROR_BIRTHDATE_MUST_IN_PAST;
-import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VALIDATION_ERROR_DOCUMENT_IS_NULL;
-import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VALIDATION_ERROR_EMAIL_IS_INVALID;
 import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VALIDATION_ERROR_FULLNAME_IS_NULL;
 
 public class Customer {
@@ -23,7 +19,7 @@ public class Customer {
     private CustomerId id;
     private FullName fullName;
     private BirthDate birthDate;
-    private String email;
+    private Email email;
     private String phone;
     private Document document;
     private Boolean promotionNotificationAllowed;
@@ -33,7 +29,7 @@ public class Customer {
     private LoyaltyPoints loyaltyPoints;
 
     public Customer(CustomerId id, FullName fullName, BirthDate birthDate,
-                    String email, String phone,
+                    Email email, String phone,
                     Document document,
                     Boolean promotionNotificationAllowed,
                     Boolean archived, OffsetDateTime registeredAt,
@@ -53,7 +49,7 @@ public class Customer {
     }
 
     public Customer(CustomerId id, FullName fullName, BirthDate birthDate,
-                    String email, String phone, Document document,
+                    Email email, String phone, Document document,
                     Boolean promotionNotificationAllowed,
                     OffsetDateTime registeredAt) {
         this.setId(id);
@@ -71,10 +67,6 @@ public class Customer {
     public void addLoyaltyPoints(LoyaltyPoints loyaltyPointsAdded) {
 
         verifyIfChangeble();
-
-//        if (loyaltyPointsAdded <= 0) {
-//            throw new IllegalArgumentException();
-//        }
         this.setLoyaltyPoints(this.loyaltyPoints().add(loyaltyPointsAdded));
 
     }
@@ -85,7 +77,7 @@ public class Customer {
         this.setArchived(true);
         this.setArchivedAt(OffsetDateTime.now());
         this.setFullName(new FullName("Anonymous", "Anonymous"));
-        this.setEmail(UUID.randomUUID() + "@anonymous.com");
+        this.setEmail(new Email(UUID.randomUUID() + "@anonymous.com"));
         this.setPhone("000-000-0000");
         this.setDocument(new Document("000-00-0000"));
         this.setBirthDate(null);
@@ -107,7 +99,7 @@ public class Customer {
         setFullName(fullName);
     }
 
-    public void changeEmail(String email) {
+    public void changeEmail(Email email) {
         verifyIfChangeble();
         setEmail(email);
     }
@@ -134,7 +126,7 @@ public class Customer {
         return birthDate;
     }
 
-    public String email() {
+    public Email email() {
         return email;
     }
 
@@ -183,9 +175,9 @@ public class Customer {
         this.birthDate = birthDate;
     }
 
-    private void setEmail(String email) {
+    private void setEmail(Email email) {
 
-        FieldValidations.requiresValidEmail(email, VALIDATION_ERROR_EMAIL_IS_INVALID);
+//        FieldValidations.requiresValidEmail(email, VALIDATION_ERROR_EMAIL_IS_INVALID);
         this.email = email;
     }
 
@@ -197,8 +189,6 @@ public class Customer {
     }
 
     private void setDocument(Document document) {
-
-//       Objects.requireNonNull(document, VALIDATION_ERROR_DOCUMENT_IS_NULL);
 
         this.document = document;
     }

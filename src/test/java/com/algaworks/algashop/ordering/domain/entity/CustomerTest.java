@@ -5,6 +5,7 @@ import com.algaworks.algashop.ordering.domain.exception.CustomerArchivedExceptio
 import com.algaworks.algashop.ordering.domain.valueobject.BirthDate;
 import com.algaworks.algashop.ordering.domain.valueobject.CustomerId;
 import com.algaworks.algashop.ordering.domain.valueobject.Document;
+import com.algaworks.algashop.ordering.domain.valueobject.Email;
 import com.algaworks.algashop.ordering.domain.valueobject.FullName;
 import com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPoints;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ class CustomerTest {
                                     new CustomerId(),
                                     new FullName("John", "Snow"),
                                     new BirthDate(LocalDate.of(1991, 7, 5)),
-                                    "invalid",
+                                    new Email("invalid"),
                                     "478-256-2504",
                                     new Document("255-08-0578"),
                                     false,
@@ -43,7 +44,7 @@ class CustomerTest {
                 new CustomerId(),
                 new FullName("John", "Snow"),
                 new BirthDate(LocalDate.of(1991, 7, 5)),
-                "john.snow@gmail.com",
+                new Email("john.snow@gmail.com"),
                 "478-256-2504",
                 new Document("255-08-0578"),
                 false,
@@ -53,7 +54,7 @@ class CustomerTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(
                         () -> {
-                            customer.changeEmail("invalid");
+                            customer.changeEmail(new Email("invalid"));
                         }
                 );
     }
@@ -65,7 +66,7 @@ class CustomerTest {
                 new CustomerId(),
                 new FullName("John", "Snow"),
                 new BirthDate(LocalDate.of(1991, 7, 5)),
-                "john.snow@gmail.com",
+                new Email("john.snow@gmail.com"),
                 "478-256-2504",
                 new Document("255-08-0578"),
                 false,
@@ -76,7 +77,7 @@ class CustomerTest {
 
         assertWith(customer,
                 c -> assertThat(c.fullName()).isEqualTo(new FullName("Anonymous", "Anonymous")),
-                c -> assertThat(c.email()).isNotEqualTo("john.snow@gmail.com"),
+                c -> assertThat(c.email()).isNotEqualTo(new Email("john.snow@gmail.com")),
                 c -> assertThat(c.phone()).isEqualTo("000-000-0000"),
                 c -> assertThat(c.document()).isEqualTo(new Document("000-00-0000")),
                 c -> assertThat(c.birthDate()).isNull(),
@@ -91,7 +92,7 @@ class CustomerTest {
                 new CustomerId(),
                 new FullName("Anonymous", "Anonymous"),
                 null,
-                "anonymous@anonymous.com",
+                new Email("anonymous@anonymous.com"),
                 "000-000-0000",
                 new Document("000-00-0000"),
                 false,
@@ -105,7 +106,7 @@ class CustomerTest {
                 .isThrownBy(customer::archive);
 
         assertThatExceptionOfType(CustomerArchivedException.class)
-                .isThrownBy(() -> customer.changeEmail("email@gmail.com"));
+                .isThrownBy(() -> customer.changeEmail(new Email("email@gmail.com")));
 
         assertThatExceptionOfType(CustomerArchivedException.class)
                 .isThrownBy(() -> customer.changePhone("123-123-1234"));
@@ -124,7 +125,7 @@ class CustomerTest {
                 new CustomerId(),
                 new FullName("John", "Snow"),
                 new BirthDate(LocalDate.of(1991, 7, 5)),
-                "john.snow@gmail.com",
+                new Email("john.snow@gmail.com"),
                 "478-256-2504",
                 new Document("255-08-0578"),
                 false,
@@ -144,7 +145,7 @@ class CustomerTest {
                 new CustomerId(),
                 new FullName("John", "Snow"),
                 new BirthDate(LocalDate.of(1991, 7, 5)),
-                "john.snow@gmail.com",
+                new Email("john.snow@gmail.com"),
                 "478-256-2504",
                 new Document("255-08-0578"),
                 false,
