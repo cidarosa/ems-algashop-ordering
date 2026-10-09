@@ -9,6 +9,7 @@ import com.algaworks.algashop.ordering.domain.valueobject.Email;
 import com.algaworks.algashop.ordering.domain.valueobject.FullName;
 import com.algaworks.algashop.ordering.domain.valueobject.LoyaltyPoints;
 import com.algaworks.algashop.ordering.domain.valueobject.Phone;
+import lombok.Builder;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -34,10 +35,11 @@ public class Customer {
 
     // novo cliente
     // Static Factory Method
-    public static Customer brandNew(FullName fullName, BirthDate birthDate,
-                                    Email email, Phone phone, Document document,
-                                    Boolean promotionNotificationAllowed,
-                                    Address address) {
+    @Builder(builderClassName = "BrandNewCustomerBuild", builderMethodName = "brandNew")
+    private static Customer newBrandNew(FullName fullName, BirthDate birthDate,
+                                        Email email, Phone phone, Document document,
+                                        Boolean promotionNotificationAllowed,
+                                        Address address) {
         return new Customer(
                 new CustomerId(),
                 fullName,
@@ -72,38 +74,41 @@ public class Customer {
 
     //cliente existente
     // Static Factory Method
-    public static Customer existing(CustomerId id, FullName fullName, BirthDate birthDate,
-                                    Email email, Phone phone,
-                                    Document document,
-                                    Boolean promotionNotificationAllowed,
-                                    Boolean archived, OffsetDateTime registeredAt,
-                                    OffsetDateTime archivedAt,
-                                    LoyaltyPoints loyaltyPoints,
-                                    Address address) {
-        return new Customer(
-                id,
-                fullName,
-                birthDate,
-                email,
-                phone,
-                document,
-                promotionNotificationAllowed,
-                archived,
-                registeredAt,
-                archivedAt,
-                loyaltyPoints,
-                address
-        );
-    }
+//    @Builder(builderClassName = "ExistingCustomerBuild", builderMethodName = "existing")
+//    private static Customer createExisting(CustomerId id, FullName fullName, BirthDate birthDate,
+//                                           Email email, Phone phone,
+//                                           Document document,
+//                                           Boolean promotionNotificationAllowed,
+//                                           Boolean archived, OffsetDateTime registeredAt,
+//                                           OffsetDateTime archivedAt,
+//                                           LoyaltyPoints loyaltyPoints,
+//                                           Address address) {
+//        return new Customer(
+//                id,
+//                fullName,
+//                birthDate,
+//                email,
+//                phone,
+//                document,
+//                promotionNotificationAllowed,
+//                archived,
+//                registeredAt,
+//                archivedAt,
+//                loyaltyPoints,
+//                address
+//        );
+//    }
 
+    //substitui o factory method
+    @Builder(builderClassName = "ExistingCustomerBuild", builderMethodName = "existing")
     private Customer(CustomerId id, FullName fullName, BirthDate birthDate,
-                    Email email, Phone phone,
-                    Document document,
-                    Boolean promotionNotificationAllowed,
-                    Boolean archived, OffsetDateTime registeredAt,
-                    OffsetDateTime archivedAt,
-                    LoyaltyPoints loyaltyPoints,
-                    Address address) {
+                     Email email, Phone phone,
+                     Document document,
+                     Boolean promotionNotificationAllowed,
+                     Boolean archived, OffsetDateTime registeredAt,
+                     OffsetDateTime archivedAt,
+                     LoyaltyPoints loyaltyPoints,
+                     Address address) {
         this.setId(id);
         this.setFullName(fullName);
         this.setBirthDate(birthDate);
