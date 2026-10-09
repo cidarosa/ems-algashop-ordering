@@ -32,8 +32,71 @@ public class Customer {
 
     private Address address;
 
+    // novo cliente
+    // Static Factory Method
+    public static Customer brandNew(FullName fullName, BirthDate birthDate,
+                                    Email email, Phone phone, Document document,
+                                    Boolean promotionNotificationAllowed,
+                                    Address address) {
+        return new Customer(
+                new CustomerId(),
+                fullName,
+                birthDate,
+                email,
+                phone,
+                document,
+                promotionNotificationAllowed,
+                false,
+                OffsetDateTime.now(),
+                null,
+                LoyaltyPoints.ZERO,
+                address);
+    }
+
+//    public Customer(CustomerId id, FullName fullName, BirthDate birthDate,
+//                    Email email, Phone phone, Document document,
+//                    Boolean promotionNotificationAllowed,
+//                    OffsetDateTime registeredAt, Address address) {
+//        this.setId(id);
+//        this.setFullName(fullName);
+//        this.setBirthDate(birthDate);
+//        this.setEmail(email);
+//        this.setPhone(phone);
+//        this.setDocument(document);
+//        this.setPromotionNotificationAllowed(promotionNotificationAllowed);
+//        this.setRegisteredAt(registeredAt);
+//        this.setArchived(false);
+//        this.setLoyaltyPoints(LoyaltyPoints.ZERO);
+//        this.setAddress(address);
+//    }
+
     //cliente existente
-    public Customer(CustomerId id, FullName fullName, BirthDate birthDate,
+    // Static Factory Method
+    public static Customer existing(CustomerId id, FullName fullName, BirthDate birthDate,
+                                    Email email, Phone phone,
+                                    Document document,
+                                    Boolean promotionNotificationAllowed,
+                                    Boolean archived, OffsetDateTime registeredAt,
+                                    OffsetDateTime archivedAt,
+                                    LoyaltyPoints loyaltyPoints,
+                                    Address address) {
+        return new Customer(
+                id,
+                fullName,
+                birthDate,
+                email,
+                phone,
+                document,
+                promotionNotificationAllowed,
+                archived,
+                registeredAt,
+                archivedAt,
+                loyaltyPoints,
+                address
+        );
+    }
+
+    private Customer(CustomerId id, FullName fullName, BirthDate birthDate,
                     Email email, Phone phone,
                     Document document,
                     Boolean promotionNotificationAllowed,
@@ -55,23 +118,6 @@ public class Customer {
         this.setAddress(address);
     }
 
-    // novo cliente
-    public Customer(CustomerId id, FullName fullName, BirthDate birthDate,
-                    Email email, Phone phone, Document document,
-                    Boolean promotionNotificationAllowed,
-                    OffsetDateTime registeredAt, Address address) {
-        this.setId(id);
-        this.setFullName(fullName);
-        this.setBirthDate(birthDate);
-        this.setEmail(email);
-        this.setPhone(phone);
-        this.setDocument(document);
-        this.setPromotionNotificationAllowed(promotionNotificationAllowed);
-        this.setRegisteredAt(registeredAt);
-        this.setArchived(false);
-        this.setLoyaltyPoints(LoyaltyPoints.ZERO);
-        this.setAddress(address);
-    }
 
     public void addLoyaltyPoints(LoyaltyPoints loyaltyPointsAdded) {
 
