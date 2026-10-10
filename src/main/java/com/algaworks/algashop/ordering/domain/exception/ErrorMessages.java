@@ -19,4 +19,13 @@ public class ErrorMessages {
     public static final String VALIDATION_ERROR_PHONE_IS_BLANK = "Phone cannot be blank";
     public static final String VALIDATION_ERROR_PHONE_IS_EMPTY = "Phone cannot be empty";
 
+    public static final String VALIDATION_ERROR_MONEY_IS_NEGATIVE = "Money cannot be negative";
+    public static final String VALIDATION_ERROR_MONEY_IS_NULL = "Money cannot be null";
+
+    public static final String VALIDATION_ERROR_QUANTITY_IS_MINOR_ONE = "Quantity cannot be minor one";
+    public static final String VALIDATION_ERROR_QUANTITY_IS_NULL = "Quantity cannot be null";
+
+    public static final String VALIDATION_ERROR_PRODUCTNAME_IS_NULL = "Product name cannot be null";
+    public static final String VALIDATION_ERROR_PRODUCTNAME_IS_BLANK = "Product name cannot be blank";
+
 }
