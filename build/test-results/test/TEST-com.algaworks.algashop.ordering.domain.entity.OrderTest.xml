@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-11T22:44:27.794Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.039">
+<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-11T22:55:28.127Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.035">
   <properties/>
-  <testcase name="souldAddItem()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.035"/>
+  <testcase name="shouldGenerateExceptionsWhenTryToChangeItemSet()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.031"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

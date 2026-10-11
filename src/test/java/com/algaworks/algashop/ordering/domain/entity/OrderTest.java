@@ -9,6 +9,8 @@ import com.algaworks.algashop.ordering.domain.valueobject.id.ProductId;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
 class OrderTest {
 
     @Test
@@ -43,4 +45,23 @@ class OrderTest {
         );
     }
 
+    @Test
+    void  shouldGenerateExceptionsWhenTryToChangeItemSet(){
+        Order order = Order.draft(new CustomerId());
+
+        ProductId productId = new ProductId();
+        order.addItem(
+                productId,
+                new ProductName("Moiuse pad"),
+                new Money("100"),
+                new Quantity(1)
+        );
+
+        Set<OrderItem> items = order.items();
+
+        Assertions.assertThatExceptionOfType(UnsupportedOperationException.class)
+                .isThrownBy(items::clear);
+
+
+    }
 }
