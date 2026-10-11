@@ -41,7 +41,7 @@ public record Money(BigDecimal value) implements Comparable<Money> {
 
         Objects.requireNonNull(money, VALIDATION_ERROR_MONEY_IS_NULL);
 
-        return new Money(this.value.add(money.value));
+        return new Money(this.value.add(money.value()));
     }
 
     public Money multiply(Quantity quantity) {
