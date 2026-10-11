@@ -6,12 +6,15 @@ import com.algaworks.algashop.ordering.domain.valueobject.Quantity;
 import com.algaworks.algashop.ordering.domain.valueobject.ShippingInfo;
 import com.algaworks.algashop.ordering.domain.valueobject.id.CustomerId;
 import com.algaworks.algashop.ordering.domain.valueobject.id.OrderId;
+import lombok.Builder;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@Builder(builderClassName = "ExistingOrderBuilder", builderMethodName = "existing")
 //aggregate root - pai
 public class Order {
 
@@ -62,10 +65,87 @@ public class Order {
         this.setItems(items);
     }
 
+    //factory para pedido que não existe
+    public static Order draft(CustomerId customerId){
+        return new Order(
+                new OrderId(),
+                customerId,
+                Money.ZERO,
+                Quantity.ZERO,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                OrderStatus.DRAFT,
+                null,
+                null,
+                null,
+                new HashSet<>()
+        );
+    }
+
     //getters - record Style
 
     public OrderId id() {
         return id;
+    }
+
+    public CustomerId customerId() {
+        return customerId;
+    }
+
+    public Money totalAmount() {
+        return totalAmount;
+    }
+
+    public Quantity totalItems() {
+        return totalItems;
+    }
+
+    public OffsetDateTime placedAt() {
+        return placedAt;
+    }
+
+    public OffsetDateTime paidAt() {
+        return paidAt;
+    }
+
+    public OffsetDateTime calceledAt() {
+        return calceledAt;
+    }
+
+    public OffsetDateTime readyAt() {
+        return readyAt;
+    }
+
+    public BillingInfo billing() {
+        return billing;
+    }
+
+    public ShippingInfo shipping() {
+        return shipping;
+    }
+
+    public OrderStatus status() {
+        return status;
+    }
+
+    public PaymentMethod paymentMethod() {
+        return paymentMethod;
+    }
+
+    public Money shippingCost() {
+        return shippingCost;
+    }
+
+    public LocalDate expectedDeliveyDate() {
+        return expectedDeliveyDate;
+    }
+
+    public Set<OrderItem> items() {
+        return items;
     }
 
     //setters - private
@@ -107,12 +187,10 @@ public class Order {
     }
 
     private void setBilling(BillingInfo billing) {
-        Objects.requireNonNull(billing);
         this.billing = billing;
     }
 
     private void setShipping(ShippingInfo shipping) {
-        Objects.requireNonNull(shipping);
         this.shipping = shipping;
     }
 
@@ -122,7 +200,6 @@ public class Order {
     }
 
     private void setPaymentMethod(PaymentMethod paymentMethod) {
-        Objects.requireNonNull(paymentMethod);
         this.paymentMethod = paymentMethod;
     }
 

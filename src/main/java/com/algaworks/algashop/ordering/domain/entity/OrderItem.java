@@ -6,6 +6,7 @@ import com.algaworks.algashop.ordering.domain.valueobject.Quantity;
 import com.algaworks.algashop.ordering.domain.valueobject.id.OrderId;
 import com.algaworks.algashop.ordering.domain.valueobject.id.OrderItemId;
 import com.algaworks.algashop.ordering.domain.valueobject.id.ProductId;
+import lombok.Builder;
 
 import java.util.Objects;
 
@@ -22,6 +23,7 @@ public class OrderItem {
 
     private Money totalAmount;
 
+    @Builder(builderClassName = "ExistingOrderItem", builderMethodName = "existing")
     public OrderItem(OrderItemId id, OrderId orderId,
                      ProductId productId, ProductName productName,
                      Money price, Quantity quantity,
@@ -34,6 +36,25 @@ public class OrderItem {
         this.setQuantity(quantity);
         this.setTotalAmount(totalAmount);
     }
+
+    //static factory
+    @Builder(builderClassName = "BrandNewOrderItemBuilder", builderMethodName = "brandNew")
+    private static OrderItem createBrandNew(OrderId orderId,
+                                     ProductId productId, ProductName productName,
+                                     Money price, Quantity quantity) {
+        return new OrderItem(
+                new OrderItemId(),
+                orderId,
+                productId,
+                productName,
+                price,
+                quantity,
+                Money.ZERO
+        );
+
+
+    }
+
 
     //getter - record style
 
@@ -93,7 +114,7 @@ public class OrderItem {
     }
 
     private void setQuantity(Quantity quantity) {
-            Objects.requireNonNull(quantity);
+        Objects.requireNonNull(quantity);
         this.quantity = quantity;
     }
 
