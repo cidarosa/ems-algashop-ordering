@@ -42,7 +42,7 @@ public class OrderItem {
     private static OrderItem createBrandNew(OrderId orderId,
                                      ProductId productId, ProductName productName,
                                      Money price, Quantity quantity) {
-        return new OrderItem(
+        OrderItem orderItem = new OrderItem(
                 new OrderItemId(),
                 orderId,
                 productId,
@@ -52,12 +52,14 @@ public class OrderItem {
                 Money.ZERO
         );
 
+        orderItem.recalculateTotals();
+        return orderItem;
+
 
     }
 
 
     //getter - record style
-
     public OrderItemId id() {
         return id;
     }
@@ -86,8 +88,11 @@ public class OrderItem {
         return totalAmount;
     }
 
-    //setters - private
+    private void recalculateTotals(){
+        this.setTotalAmount(this.price().multiply(this.quantity()));
+    }
 
+    //setters - private
     private void setId(OrderItemId id) {
         Objects.requireNonNull(id);
         this.id = id;
