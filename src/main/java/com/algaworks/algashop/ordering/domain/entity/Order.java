@@ -1,5 +1,6 @@
 package com.algaworks.algashop.ordering.domain.entity;
 
+import com.algaworks.algashop.ordering.domain.exception.OrderInvalidShippingDeliveryDateException;
 import com.algaworks.algashop.ordering.domain.exception.OrderStatusCannotBeChangedException;
 import com.algaworks.algashop.ordering.domain.valueobject.BillingInfo;
 import com.algaworks.algashop.ordering.domain.valueobject.Money;
@@ -41,7 +42,7 @@ public class Order {
     private PaymentMethod paymentMethod;
 
     private Money shippingCost;
-    private LocalDate expectedDeliveyDate;
+    private LocalDate expectedDeliveryDate;
 
     private Set<OrderItem> items;
 
@@ -51,7 +52,7 @@ public class Order {
                  OffsetDateTime calceledAt, OffsetDateTime readyAt,
                  BillingInfo billing, ShippingInfo shipping,
                  OrderStatus status, PaymentMethod paymentMethod,
-                 Money shippingCost, LocalDate expectedDeliveyDate,
+                 Money shippingCost, LocalDate expectedDeliveryDate,
                  Set<OrderItem> items) {
         this.setId(id);
         this.setCustomerId(customerId);
@@ -66,7 +67,7 @@ public class Order {
         this.setStatus(status);
         this.setPaymentMethod(paymentMethod);
         this.setShippingCost(shippingCost);
-        this.setExpectedDeliveyDate(expectedDeliveyDate);
+        this.setExpectedDeliveryDate(expectedDeliveryDate);
         this.setItems(items);
     }
 
@@ -120,20 +121,39 @@ public class Order {
          this.changeStatus(OrderStatus.PLACED);
     }
 
-    private void changeStatus(OrderStatus newuStatus) {
+    public void changePaymentMethod(PaymentMethod paymentMethod){
 
-        Objects.requireNonNull(newuStatus);
+        Objects.requireNonNull(paymentMethod);
+        this.setPaymentMethod(paymentMethod);
+    }
 
-        if(this.status().canNotChangeTo(newuStatus)){
-            throw  new OrderStatusCannotBeChangedException(this.id(), this.status(), newuStatus);
+    public void changeBilling(BillingInfo billing){
+
+        Objects.requireNonNull(billing);
+        this.setBilling(billing);
+    }
+
+    public void changeShipping(ShippingInfo shipping, Money shippingCost, LocalDate expectedDeliveryDate){
+
+        Objects.requireNonNull(shipping);
+        Objects.requireNonNull(shippingCost);
+        Objects.requireNonNull(expectedDeliveryDate);
+
+        if(expectedDeliveryDate.isBefore(LocalDate.now())){
+            throw new OrderInvalidShippingDeliveryDateException(this.id());
         }
 
-        this.setStatus(newuStatus);
+        this.setShipping(shipping);
+        this.setShippingCost(shippingCost);
+        this.setExpectedDeliveryDate(expectedDeliveryDate);
     }
+
 
     public boolean isDraft(){
         return OrderStatus.DRAFT.equals(this.status());
     }
+
+
      public boolean isPlaced(){
         return OrderStatus.PLACED.equals(this.status());
     }
@@ -192,8 +212,8 @@ public class Order {
         return shippingCost;
     }
 
-    public LocalDate expectedDeliveyDate() {
-        return expectedDeliveyDate;
+    public LocalDate expectedDeliveryDate() {
+        return expectedDeliveryDate;
     }
 
     public Set<OrderItem> items() {
@@ -217,6 +237,17 @@ public class Order {
         BigDecimal totalAmount = totalItemsAmount.add(shippingCost);
         this.setTotalAmount(new Money(totalAmount));
         this.setTotalItems(new Quantity(totalItemsQunatity));
+    }
+
+    private void changeStatus(OrderStatus newStatus) {
+
+        Objects.requireNonNull(newStatus);
+
+        if(this.status().canNotChangeTo(newStatus)){
+            throw  new OrderStatusCannotBeChangedException(this.id(), this.status(), newStatus);
+        }
+
+        this.setStatus(newStatus);
     }
 
     //setters - private
@@ -278,8 +309,8 @@ public class Order {
         this.shippingCost = shippingCost;
     }
 
-    private void setExpectedDeliveyDate(LocalDate expectedDeliveyDate) {
-        this.expectedDeliveyDate = expectedDeliveyDate;
+    private void setExpectedDeliveryDate(LocalDate expectedDeliveryDate) {
+        this.expectedDeliveryDate = expectedDeliveryDate;
     }
 
     private void setItems(Set<OrderItem> items) {
