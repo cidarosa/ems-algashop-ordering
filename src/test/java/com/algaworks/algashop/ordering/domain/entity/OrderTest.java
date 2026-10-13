@@ -1,6 +1,7 @@
 package com.algaworks.algashop.ordering.domain.entity;
 
 
+import com.algaworks.algashop.ordering.domain.exception.OrderStatusCannotBeChangedException;
 import com.algaworks.algashop.ordering.domain.valueobject.Money;
 import com.algaworks.algashop.ordering.domain.valueobject.ProductName;
 import com.algaworks.algashop.ordering.domain.valueobject.Quantity;
@@ -87,6 +88,23 @@ class OrderTest {
 
         Assertions.assertThat(order.totalAmount()).isEqualTo(new Money("250"));
         Assertions.assertThat(order.totalItems()).isEqualTo(new Quantity(3));
+    }
+
+    @Test
+    void givenDraftOrder_whenPlace_shouldChangeToPlace(){
+
+        Order order = Order.draft(new CustomerId());
+        order.place();
+        Assertions.assertThat(order.isPlaced()).isTrue();
+    }
+
+   @Test
+    void givenPlaceOrder_whenTryToPlace_shouldGenerateException(){
+
+        Order order = Order.draft(new CustomerId());
+        order.place();
+        Assertions.assertThatExceptionOfType(OrderStatusCannotBeChangedException.class)
+                .isThrownBy(order::place);
     }
 
 

@@ -28,4 +28,6 @@ public class ErrorMessages {
     public static final String VALIDATION_ERROR_PRODUCTNAME_IS_NULL = "Product name cannot be null";
     public static final String VALIDATION_ERROR_PRODUCTNAME_IS_BLANK = "Product name cannot be blank";
 
+    public static final String ERROR_ORDER_STATUS_CANNOT_BE_CHANGED = "Cannot change order %s status from %s to %s";
+
 }
