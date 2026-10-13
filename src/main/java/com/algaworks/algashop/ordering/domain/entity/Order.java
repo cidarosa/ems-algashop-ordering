@@ -6,6 +6,7 @@ import com.algaworks.algashop.ordering.domain.exception.OrderInvalidShippingDeli
 import com.algaworks.algashop.ordering.domain.exception.OrderStatusCannotBeChangedException;
 import com.algaworks.algashop.ordering.domain.valueobject.BillingInfo;
 import com.algaworks.algashop.ordering.domain.valueobject.Money;
+import com.algaworks.algashop.ordering.domain.valueobject.Product;
 import com.algaworks.algashop.ordering.domain.valueobject.ProductName;
 import com.algaworks.algashop.ordering.domain.valueobject.Quantity;
 import com.algaworks.algashop.ordering.domain.valueobject.ShippingInfo;
@@ -97,16 +98,15 @@ public class Order {
 
     // metodos comportamento
     public void addItem(
-            ProductId productId,
-            ProductName productName,
-            Money price,
+            Product product,
             Quantity quantity) {
+
+        Objects.requireNonNull(product);
+        Objects.requireNonNull(quantity);
 
         OrderItem orderItem = OrderItem.brandNew()
                 .orderId(this.id)
-                .productId(productId)
-                .productName(productName)
-                .price(price)
+                .product(product)
                 .quantity(quantity)
                 .build();
 
@@ -171,7 +171,7 @@ public class Order {
         this.setExpectedDeliveryDate(expectedDeliveryDate);
     }
 
-public void changeItemQuantity(OrderItemId orderItemId, Quantity quantity){
+    public void changeItemQuantity(OrderItemId orderItemId, Quantity quantity) {
 
         Objects.requireNonNull(orderItemId);
         Objects.requireNonNull(quantity);
@@ -180,7 +180,7 @@ public void changeItemQuantity(OrderItemId orderItemId, Quantity quantity){
         orderItem.changeQuantity(quantity);
 
         this.recalculateTotals();
-}
+    }
 
     public boolean isDraft() {
         return OrderStatus.DRAFT.equals(this.status());
@@ -307,7 +307,7 @@ public void changeItemQuantity(OrderItemId orderItemId, Quantity quantity){
             throw OrderCannotPlacedException.noPaymentMethod(this.id);
         }
 
-        if (this.items()==null ||  this.items().isEmpty()) {
+        if (this.items() == null || this.items().isEmpty()) {
             throw OrderCannotPlacedException.noItem(this.id);
         }
     }

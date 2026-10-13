@@ -8,6 +8,7 @@ import com.algaworks.algashop.ordering.domain.valueobject.Document;
 import com.algaworks.algashop.ordering.domain.valueobject.FullName;
 import com.algaworks.algashop.ordering.domain.valueobject.Money;
 import com.algaworks.algashop.ordering.domain.valueobject.Phone;
+import com.algaworks.algashop.ordering.domain.valueobject.Product;
 import com.algaworks.algashop.ordering.domain.valueobject.ProductName;
 import com.algaworks.algashop.ordering.domain.valueobject.Quantity;
 import com.algaworks.algashop.ordering.domain.valueobject.ShippingInfo;
@@ -31,14 +32,10 @@ class OrderTest {
     @Test
     void souldAddItem() {
         Order order = Order.draft(new CustomerId());
+        Product product = ProductTestDataBuilder.aProductAltMousePad().build();
+        ProductId productId = product.id();
 
-        ProductId productId = new ProductId();
-        order.addItem(
-                productId,
-                new ProductName("Moiuse pad"),
-                new Money("100"),
-                new Quantity(1)
-        );
+        order.addItem(product, new Quantity(1));
 
         Assertions.assertThat(order.items()).isNotEmpty();
         Assertions.assertThat(order.items().size()).isEqualTo(1);
@@ -48,7 +45,7 @@ class OrderTest {
         Assertions.assertWith(orderItem,
                 (i) -> Assertions.assertThat(i.id()).isNotNull(),
                 (i) -> Assertions.assertThat(i.productId()).isEqualTo(productId),
-                (i) -> Assertions.assertThat(i.productName()).isEqualTo(new ProductName("Moiuse pad")),
+                (i) -> Assertions.assertThat(i.productName()).isEqualTo(new ProductName("Mouse Pad")),
                 (i) -> Assertions.assertThat(i.price()).isEqualTo(new Money("100")),
                 (i) -> Assertions.assertThat(i.quantity()).isEqualTo(new Quantity(1))
         );
@@ -57,14 +54,10 @@ class OrderTest {
     @Test
     void shouldGenerateExceptionsWhenTryToChangeItemSet() {
         Order order = Order.draft(new CustomerId());
+        Product product = ProductTestDataBuilder.aProductAltMousePad().build();
+//        ProductId productId = product.id();
 
-        ProductId productId = new ProductId();
-        order.addItem(
-                productId,
-                new ProductName("Moiuse pad"),
-                new Money("100"),
-                new Quantity(1)
-        );
+        order.addItem(product, new Quantity(1));
 
         Set<OrderItem> items = order.items();
 
@@ -76,25 +69,17 @@ class OrderTest {
     void shouldCalculateTotals() {
         Order order = Order.draft(new CustomerId());
 
-        ProductId productId = new ProductId();
+        order.addItem(
+                ProductTestDataBuilder.aProductAltMousePad().build(),
+                new Quantity(2));
 
         order.addItem(
-                productId,
-                new ProductName("Moiuse pad"),
-                new Money("100"),
-                new Quantity(2)
-        );
-
-        order.addItem(
-                productId,
-                new ProductName("RAM Memory"),
-                new Money("50"),
-                new Quantity(1)
-        );
+                ProductTestDataBuilder.aProductAltRamMemory().build(),
+                new Quantity(1));
 
         Set<OrderItem> items = order.items();
 
-        Assertions.assertThat(order.totalAmount()).isEqualTo(new Money("250"));
+        Assertions.assertThat(order.totalAmount()).isEqualTo(new Money("400"));
         Assertions.assertThat(order.totalItems()).isEqualTo(new Quantity(3));
     }
 
@@ -102,8 +87,9 @@ class OrderTest {
     void givenDraftOrder_whenPlace_shouldChangeToPlace() {
 
         Order order = OrderTestDataBuilder.anOrder().build();
-//        Order order = Order.draft(new CustomerId());
+
         order.place();
+
         Assertions.assertThat(order.isPlaced()).isTrue();
     }
 
@@ -227,10 +213,9 @@ class OrderTest {
     void givenDraftOrder_whenChangeItem_shoudRecalculate() {
 
         Order order = Order.draft(new CustomerId());
+
         order.addItem(
-                new ProductId(),
-                new ProductName("Desktop X11"),
-                new Money("10.00"),
+                ProductTestDataBuilder.aProductAltMousePad().build(),
                 new Quantity(3)
         );
 
@@ -238,10 +223,9 @@ class OrderTest {
         order.changeItemQuantity(orderItem.id(), new Quantity(5));
 
         Assertions.assertWith(order,
-                (o) -> Assertions.assertThat(o.totalAmount()).isEqualTo(new Money("50.00")),
+                (o) -> Assertions.assertThat(o.totalAmount()).isEqualTo(new Money("500.00")),
                 (o) -> Assertions.assertThat(o.totalItems()).isEqualTo(new Quantity(5))
         );
     }
-
 
 }
