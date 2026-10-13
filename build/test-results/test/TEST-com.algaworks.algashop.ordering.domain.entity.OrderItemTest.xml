@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderItemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-13T19:01:31.995Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.02">
+<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderItemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-13T19:24:45.784Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.007">
   <properties/>
-  <testcase name="shouldGenerate()" classname="com.algaworks.algashop.ordering.domain.entity.OrderItemTest" time="0.016"/>
+  <testcase name="shouldGenerate()" classname="com.algaworks.algashop.ordering.domain.entity.OrderItemTest" time="0.007"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
