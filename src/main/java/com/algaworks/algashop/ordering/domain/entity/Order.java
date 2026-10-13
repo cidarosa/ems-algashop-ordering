@@ -119,16 +119,18 @@ public class Order {
 
     public void place() {
 
-        Objects.requireNonNull(this.shipping());
-        Objects.requireNonNull(this.billing());
-        Objects.requireNonNull(this.expectedDeliveryDate());
-        Objects.requireNonNull(this.shippingCost());
-        Objects.requireNonNull(this.paymentMethod());
-        Objects.requireNonNull(this.items());
+        this.verifyIfCanChangeToPlaced();
 
-        if (this.items().isEmpty()) {
-            throw new OrderCannotPlacedException(this.id());
-        }
+//        Objects.requireNonNull(this.shipping(), "Has no shipping info");
+//        Objects.requireNonNull(this.billing(), "Has no billing info");
+//        Objects.requireNonNull(this.expectedDeliveryDate());
+//        Objects.requireNonNull(this.shippingCost());
+//        Objects.requireNonNull(this.paymentMethod());
+//        Objects.requireNonNull(this.items());
+
+//        if (this.items().isEmpty()) {
+//            throw new OrderCannotPlacedException(this.id());
+//        }
 
         this.setPlacedAt(OffsetDateTime.now());
 
@@ -176,7 +178,7 @@ public class Order {
         return OrderStatus.PLACED.equals(this.status());
     }
 
-    public boolean isPaid(){
+    public boolean isPaid() {
         return OrderStatus.PAID.equals(this.status());
     }
 
@@ -252,7 +254,7 @@ public class Order {
         if (shippingCost() == null) {
             shippingCost = BigDecimal.ZERO;
         } else {
-            shippingCost = this.shippingCost().value(); /////
+            shippingCost = this.shippingCost().value(); //aqui coloquei o metodo
         }
 
         BigDecimal totalAmount = totalItemsAmount.add(shippingCost);
@@ -269,6 +271,33 @@ public class Order {
         }
 
         this.setStatus(newStatus);
+    }
+
+    private void verifyIfCanChangeToPlaced() {
+
+        if (this.shipping() == null) {
+            throw OrderCannotPlacedException.noShippingInfo(this.id);
+        }
+
+        if (this.billing() == null) {
+            throw OrderCannotPlacedException.noBillingInfo(this.id);
+        }
+
+        if (this.expectedDeliveryDate() == null) {
+            throw OrderCannotPlacedException.invalidExpectedDeliveryDate(this.id);
+        }
+
+        if (this.shippingCost() == null) {
+            throw OrderCannotPlacedException.invalidShippingCost(this.id);
+        }
+
+        if (this.paymentMethod() == null) {
+            throw OrderCannotPlacedException.noPaymentMethod(this.id);
+        }
+
+        if (this.items()==null ||  this.items().isEmpty()) {
+            throw OrderCannotPlacedException.noItem(this.id);
+        }
     }
 
     //setters - private

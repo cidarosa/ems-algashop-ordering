@@ -102,6 +102,7 @@ class OrderTest {
     void givenDraftOrder_whenPlace_shouldChangeToPlace() {
 
         Order order = OrderTestDataBuilder.anOrder().build();
+//        Order order = Order.draft(new CustomerId());
         order.place();
         Assertions.assertThat(order.isPlaced()).isTrue();
     }

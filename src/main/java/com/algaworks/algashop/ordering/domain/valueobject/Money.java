@@ -61,10 +61,10 @@ public record Money(BigDecimal value) implements Comparable<Money> {
 
         Objects.requireNonNull(money, VALIDATION_ERROR_MONEY_IS_NULL);
 
-        if (money.value.compareTo(BigDecimal.ZERO) == 0){
+        if (money.value().compareTo(BigDecimal.ZERO) == 0){
             throw new IllegalArgumentException();
         }
-        return new Money(this.value.divide(money.value, 2, roundingMode));
+        return new Money(this.value.divide(money.value(), 2, roundingMode));
     }
 
     @Override
