@@ -40,8 +40,8 @@ public class OrderItem {
     //static factory
     @Builder(builderClassName = "BrandNewOrderItemBuilder", builderMethodName = "brandNew")
     private static OrderItem createBrandNew(OrderId orderId,
-                                     ProductId productId, ProductName productName,
-                                     Money price, Quantity quantity) {
+                                            ProductId productId, ProductName productName,
+                                            Money price, Quantity quantity) {
         OrderItem orderItem = new OrderItem(
                 new OrderItemId(),
                 orderId,
@@ -58,6 +58,11 @@ public class OrderItem {
 
     }
 
+    void changeQuantity(Quantity quantity) {
+        Objects.requireNonNull(quantity);
+        this.setQuantity(quantity);
+        this.recalculateTotals();
+    }
 
     //getter - record style
     public OrderItemId id() {
@@ -88,7 +93,7 @@ public class OrderItem {
         return totalAmount;
     }
 
-    private void recalculateTotals(){
+    private void recalculateTotals() {
         this.setTotalAmount(this.price().multiply(this.quantity()));
     }
 
@@ -139,4 +144,5 @@ public class OrderItem {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }
