@@ -1,6 +1,5 @@
 package com.algaworks.algashop.ordering.domain.entity;
 
-
 import com.algaworks.algashop.ordering.domain.valueobject.Address;
 import com.algaworks.algashop.ordering.domain.valueobject.BirthDate;
 import com.algaworks.algashop.ordering.domain.valueobject.id.CustomerId;
@@ -14,12 +13,6 @@ import com.algaworks.algashop.ordering.domain.valueobject.ZipCode;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
-/**
- * Aula 5.32
- * Nessa implementação o TestDataBuilder está agindo muito mais como um Factory Method,
- * pois ele por si só não permite customizar os dados do Customer, mas retorna um Builder já fabricado com dados.
- * Nos módulos futuros veremos uma implementação alternativa.
- */
 public class CustomerTestDataBuilder {
 
     private CustomerTestDataBuilder() {

@@ -108,7 +108,7 @@ public class Order {
                 .quantity(quantity)
                 .build();
 
-        if (this.items == null){
+        if (this.items == null) {
             this.items = new HashSet<>();
         }
 
@@ -117,7 +117,7 @@ public class Order {
         this.recalculateTotals();
     }
 
-    public void place(){
+    public void place() {
 
         Objects.requireNonNull(this.shipping());
         Objects.requireNonNull(this.billing());
@@ -126,34 +126,39 @@ public class Order {
         Objects.requireNonNull(this.paymentMethod());
         Objects.requireNonNull(this.items());
 
-        if(this.items().isEmpty()){
+        if (this.items().isEmpty()) {
             throw new OrderCannotPlacedException(this.id());
         }
 
         this.setPlacedAt(OffsetDateTime.now());
 
-         this.changeStatus(OrderStatus.PLACED);
+        this.changeStatus(OrderStatus.PLACED);
     }
 
-    public void changePaymentMethod(PaymentMethod paymentMethod){
+    public void markAsPaid() {
+        this.setPaidAt(OffsetDateTime.now());
+        this.changeStatus(OrderStatus.PAID);
+    }
+
+    public void changePaymentMethod(PaymentMethod paymentMethod) {
 
         Objects.requireNonNull(paymentMethod);
         this.setPaymentMethod(paymentMethod);
     }
 
-    public void changeBilling(BillingInfo billing){
+    public void changeBilling(BillingInfo billing) {
 
         Objects.requireNonNull(billing);
         this.setBilling(billing);
     }
 
-    public void changeShipping(ShippingInfo shipping, Money shippingCost, LocalDate expectedDeliveryDate){
+    public void changeShipping(ShippingInfo shipping, Money shippingCost, LocalDate expectedDeliveryDate) {
 
         Objects.requireNonNull(shipping);
         Objects.requireNonNull(shippingCost);
         Objects.requireNonNull(expectedDeliveryDate);
 
-        if(expectedDeliveryDate.isBefore(LocalDate.now())){
+        if (expectedDeliveryDate.isBefore(LocalDate.now())) {
             throw new OrderInvalidShippingDeliveryDateException(this.id());
         }
 
@@ -163,15 +168,17 @@ public class Order {
     }
 
 
-    public boolean isDraft(){
+    public boolean isDraft() {
         return OrderStatus.DRAFT.equals(this.status());
     }
 
-
-     public boolean isPlaced(){
+    public boolean isPlaced() {
         return OrderStatus.PLACED.equals(this.status());
     }
 
+    public boolean isPaid(){
+        return OrderStatus.PAID.equals(this.status());
+    }
 
     //getters - record Style
     public OrderId id() {
@@ -242,7 +249,7 @@ public class Order {
                 .reduce(0, Integer::sum);
 
         BigDecimal shippingCost;
-        if (shippingCost() == null){
+        if (shippingCost() == null) {
             shippingCost = BigDecimal.ZERO;
         } else {
             shippingCost = this.shippingCost().value(); /////
@@ -257,8 +264,8 @@ public class Order {
 
         Objects.requireNonNull(newStatus);
 
-        if(this.status().canNotChangeTo(newStatus)){
-            throw  new OrderStatusCannotBeChangedException(this.id(), this.status(), newStatus);
+        if (this.status().canNotChangeTo(newStatus)) {
+            throw new OrderStatusCannotBeChangedException(this.id(), this.status(), newStatus);
         }
 
         this.setStatus(newStatus);
@@ -343,4 +350,5 @@ public class Order {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }
