@@ -17,7 +17,7 @@
 <div class="tab-container">
 <ul class="tabLinks">
 <li>
-<a class="successGroup" href="#">Gradle Test Run :test</a>
+<a class="failureGroup" href="#">Gradle Test Run :test</a>
 </li>
 </ul>
 <div class="tab">
@@ -41,13 +41,13 @@
 <tr>
 <td>
 <div class="infoBox">
-<div class="counter">1</div>
+<div class="counter">10</div>
 <p>tests</p>
 </div>
 </td>
 <td>
 <div class="infoBox">
-<div class="counter">0</div>
+<div class="counter">2</div>
 <p>failures</p>
 </div>
 </td>
@@ -59,7 +59,7 @@
 </td>
 <td>
 <div class="infoBox duration">
-<div class="counter">0.034s</div>
+<div class="counter">0.057s</div>
 <p>duration</p>
 </div>
 </td>
@@ -68,14 +68,25 @@
 </div>
 </td>
 <td>
-<div class="infoBox success successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures successRate">
+<div class="percent">80%</div>
 <p>successful</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">Failed</a>
+</li>
+<li>
+<a class="" href="#">All</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Failed</h2>
 <table class="test-results sortable">
 <thead>
 <tr>
@@ -90,16 +101,143 @@
 </thead>
 <tbody>
 <tr>
+<td class="failures">
+<a href="givenDraftOrder_whenPlace_shouldChangeToPlace().html">givenDraftOrder_whenPlace_shouldChangeToPlace()</a>
+</td>
+<td class="path" hidden="">givenDraftOrder_whenPlace_shouldChangeToPlace()</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td data-sort-value="2">0.002s</td>
+<td class="failures" data-sort-value="0">0%</td>
+</tr>
+<tr>
+<td class="failures">
+<a href="givenPlaceOrder_whenTryToPlace_shouldGenerateException().html">givenPlaceOrder_whenTryToPlace_shouldGenerateException()</a>
+</td>
+<td class="path" hidden="">givenPlaceOrder_whenTryToPlace_shouldGenerateException()</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td data-sort-value="18">0.018s</td>
+<td class="failures" data-sort-value="0">0%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab">
+<h2>All</h2>
+<table class="test-results sortable">
+<thead>
+<tr>
+<th>Child</th>
+<th hidden="">Name</th>
+<th data-sort-default="desc">Tests</th>
+<th data-sort-default="desc">Failures</th>
+<th data-sort-default="desc">Skipped</th>
+<th data-sort-default="desc">Duration</th>
+<th>Success rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="success">giveDraftOrder_whenChangeBillingInfo_shouldAllowChange()</td>
+<td class="path" hidden="">giveDraftOrder_whenChangeBillingInfo_shouldAllowChange()</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td data-sort-value="1">0.001s</td>
+<td class="success" data-sort-value="100">100%</td>
+</tr>
+<tr>
+<td class="success">giveDraftOrder_whenChangePaymentMethod_shouldAllowChange()</td>
+<td class="path" hidden="">giveDraftOrder_whenChangePaymentMethod_shouldAllowChange()</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td data-sort-value="1">0.001s</td>
+<td class="success" data-sort-value="100">100%</td>
+</tr>
+<tr>
+<td class="failures">
+<a href="givenDraftOrder_whenPlace_shouldChangeToPlace().html">givenDraftOrder_whenPlace_shouldChangeToPlace()</a>
+</td>
+<td class="path" hidden="">givenDraftOrder_whenPlace_shouldChangeToPlace()</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td data-sort-value="2">0.002s</td>
+<td class="failures" data-sort-value="0">0%</td>
+</tr>
+<tr>
+<td class="success">givenOrderDraft_whenChangeShippingInfo_shouldAllowChange()</td>
+<td class="path" hidden="">givenOrderDraft_whenChangeShippingInfo_shouldAllowChange()</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td data-sort-value="3">0.003s</td>
+<td class="success" data-sort-value="100">100%</td>
+</tr>
+<tr>
 <td class="success">givenOrderDraftAndDeliveryDateInThePast_whenTryChangeShippingInfo_shouldNotAllowChange()</td>
 <td class="path" hidden="">givenOrderDraftAndDeliveryDateInThePast_whenTryChangeShippingInfo_shouldNotAllowChange()</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td data-sort-value="29">0.029s</td>
+<td data-sort-value="0">0s</td>
+<td class="success" data-sort-value="100">100%</td>
+</tr>
+<tr>
+<td class="failures">
+<a href="givenPlaceOrder_whenTryToPlace_shouldGenerateException().html">givenPlaceOrder_whenTryToPlace_shouldGenerateException()</a>
+</td>
+<td class="path" hidden="">givenPlaceOrder_whenTryToPlace_shouldGenerateException()</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td data-sort-value="18">0.018s</td>
+<td class="failures" data-sort-value="0">0%</td>
+</tr>
+<tr>
+<td class="success">shouldCalculateTotals()</td>
+<td class="path" hidden="">shouldCalculateTotals()</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td data-sort-value="0">0s</td>
+<td class="success" data-sort-value="100">100%</td>
+</tr>
+<tr>
+<td class="success">shouldGenerate()</td>
+<td class="path" hidden="">shouldGenerate()</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td data-sort-value="1">0.001s</td>
+<td class="success" data-sort-value="100">100%</td>
+</tr>
+<tr>
+<td class="success">shouldGenerateExceptionsWhenTryToChangeItemSet()</td>
+<td class="path" hidden="">shouldGenerateExceptionsWhenTryToChangeItemSet()</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td data-sort-value="2">0.002s</td>
+<td class="success" data-sort-value="100">100%</td>
+</tr>
+<tr>
+<td class="success">souldAddItem()</td>
+<td class="path" hidden="">souldAddItem()</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td data-sort-value="23">0.023s</td>
 <td class="success" data-sort-value="100">100%</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -112,7 +250,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 9.7.1</a> at 12 de out. de 2026 22:42:15</p>
+<a href="https://www.gradle.org">Gradle 9.7.1</a> at 12 de out. de 2026 22:54:55</p>
 </div>
 </div>
 </body>

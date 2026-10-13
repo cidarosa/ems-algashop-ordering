@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-13T01:42:15.284Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.033">
+<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderTest" tests="10" skipped="0" failures="2" errors="0" timestamp="2026-10-13T01:54:55.883Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.057">
   <properties/>
-  <testcase name="givenOrderDraftAndDeliveryDateInThePast_whenTryChangeShippingInfo_shouldNotAllowChange()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.029"/>
+  <testcase name="givenPlaceOrder_whenTryToPlace_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.018">
+    <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:220)
+	at com.algaworks.algashop.ordering.domain.entity.Order.place(Order.java:122)
+	at com.algaworks.algashop.ordering.domain.entity.OrderTest.givenPlaceOrder_whenTryToPlace_shouldGenerateException(OrderTest.java:113)
+</failure>
+  </testcase>
+  <testcase name="givenDraftOrder_whenPlace_shouldChangeToPlace()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.002">
+    <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:220)
+	at com.algaworks.algashop.ordering.domain.entity.Order.place(Order.java:122)
+	at com.algaworks.algashop.ordering.domain.entity.OrderTest.givenDraftOrder_whenPlace_shouldChangeToPlace(OrderTest.java:105)
+</failure>
+  </testcase>
+  <testcase name="souldAddItem()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.023"/>
+  <testcase name="givenOrderDraft_whenChangeShippingInfo_shouldAllowChange()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.003"/>
+  <testcase name="giveDraftOrder_whenChangePaymentMethod_shouldAllowChange()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.001"/>
+  <testcase name="shouldGenerate()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.001"/>
+  <testcase name="shouldGenerateExceptionsWhenTryToChangeItemSet()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.002"/>
+  <testcase name="giveDraftOrder_whenChangeBillingInfo_shouldAllowChange()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.001"/>
+  <testcase name="givenOrderDraftAndDeliveryDateInThePast_whenTryChangeShippingInfo_shouldNotAllowChange()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.0"/>
+  <testcase name="shouldCalculateTotals()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
