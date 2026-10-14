@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.algaworks.algashop.ordering.domain.valueobject.ShippingTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-14T01:08:38.141Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.035">
+  <properties/>
+  <testcase name="given_validShippingInfo_shouldGenerateNewShippingInfo()" classname="com.algaworks.algashop.ordering.domain.valueobject.ShippingTest" time="0.031"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

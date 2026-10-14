@@ -12,11 +12,10 @@ import com.algaworks.algashop.ordering.domain.valueobject.Phone;
 import com.algaworks.algashop.ordering.domain.valueobject.Product;
 import com.algaworks.algashop.ordering.domain.valueobject.ProductName;
 import com.algaworks.algashop.ordering.domain.valueobject.Quantity;
-import com.algaworks.algashop.ordering.domain.valueobject.ShippingInfo;
+import com.algaworks.algashop.ordering.domain.valueobject.Shipping;
 import com.algaworks.algashop.ordering.domain.valueobject.ZipCode;
 import com.algaworks.algashop.ordering.domain.valueobject.id.CustomerId;
 import com.algaworks.algashop.ordering.domain.valueobject.id.ProductId;
-import io.micrometer.observation.Observation;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
@@ -58,7 +57,6 @@ class OrderTest {
     void shouldGenerateExceptionsWhenTryToChangeItemSet() {
         Order order = Order.draft(new CustomerId());
         Product product = ProductTestDataBuilder.aProductAltMousePad().build();
-//        ProductId productId = product.id();
 
         order.addItem(product, new Quantity(1));
 
@@ -156,60 +154,32 @@ class OrderTest {
     }
 
     @Test
-    void givenOrderDraft_whenChangeShippingInfo_shouldAllowChange() {
-        Address address = Address.builder()
-                .street("Bourbon Street")
-                .number("1234")
-                .complement("apt. 11")
-                .neighbordhood("North Ville")
-                .city("Montfort")
-                .state("South Caroline")
-                .zipCode(new ZipCode("79911")).build();
+    void givenOrderDraft_whenChangeShipping_shouldAllowChange() {
 
-        ShippingInfo shippingInfo = ShippingInfo.newShipping()
-                .fullName(new FullName("John", "Snow"))
-                .document(new Document("225-09-1992"))
-                .phone(new Phone("123-111-9911"))
-                .address(address)
-                .build();
+
+        Shipping shipping = OrderTestDataBuilder.aShipping();
 
         Order order = Order.draft(new CustomerId());
-        Money shippingCost = Money.ZERO;
-        LocalDate expectedFeliveryDate = LocalDate.now().plusDays(1);
-        order.changeShipping(shippingInfo, shippingCost, expectedFeliveryDate);
+        order.changeShipping(shipping);
 
         Assertions.assertWith(order,
-                o -> Assertions.assertThat(o.shipping()).isEqualTo(shippingInfo),
-                o -> Assertions.assertThat(o.shippingCost()).isEqualTo(shippingCost),
-                o -> Assertions.assertThat(o.expectedDeliveryDate()).isEqualTo(expectedFeliveryDate)
-        );
+                o -> Assertions.assertThat(o.shipping()).isEqualTo(shipping));
     }
 
     @Test
-    void givenOrderDraftAndDeliveryDateInThePast_whenTryChangeShippingInfo_shouldNotAllowChange() {
-        Address address = Address.builder()
-                .street("Bourbon Street")
-                .number("1234")
-                .complement("apt. 11")
-                .neighbordhood("North Ville")
-                .city("Montfort")
-                .state("South Caroline")
-                .zipCode(new ZipCode("79911")).build();
+    void givenOrderDraftAndDeliveryDateInThePast_whenTryChangeShipping_shouldNotAllowChange() {
 
-        ShippingInfo shippingInfo = ShippingInfo.newShipping()
-                .fullName(new FullName("John", "Snow"))
-                .document(new Document("225-09-1992"))
-                .phone(new Phone("123-111-9911"))
-                .address(address)
+        LocalDate expectedDeliveryDate = LocalDate.now().minusDays(2);
+
+        Shipping shipping = OrderTestDataBuilder.aShipping()
+                .toBuilder()
+                .expectedDate(expectedDeliveryDate)
                 .build();
 
         Order order = Order.draft(new CustomerId());
-        Money shippingCost = Money.ZERO;
-        LocalDate expectedFeliveryDate = LocalDate.now().minusDays(2);
 
         Assertions.assertThatExceptionOfType(OrderInvalidShippingDeliveryDateException.class)
-                .isThrownBy(() -> order.changeShipping(shippingInfo, shippingCost, expectedFeliveryDate));
-
+                .isThrownBy(() -> order.changeShipping(shipping));
     }
 
     @Test

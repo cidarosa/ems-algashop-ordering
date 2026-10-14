@@ -34,8 +34,7 @@ public class ErrorMessages {
     public static final String ERROR_ORDER_CANNOT_BE_PLACED_HAS_NO_ITEMS = "Order %s cannot be placed, it has no items";
     public static final String ERROR_ORDER_CANNOT_BE_PLACED_HAS_NO_SHIPPING_INFO = "Order %s cannot be placed, it has no shipping inf";
     public static final String ERROR_ORDER_CANNOT_BE_PLACED_HAS_NO_BILLING_INFO = "Order %s cannot be placed, it has no billing info";
-    public static final String ERROR_ORDER_CANNOT_BE_PLACED_HAS_INVALID_SHIPPING_COST = "Order %s cannot be placed, it has invalid shipping cost";
-    public static final String ERROR_ORDER_CANNOT_BE_PLACED_HAS_INVALID_DELIVERY_DATE = "Order %s cannot be placed, it has invalid delivery date";
+
     public static final String ERROR_ORDER_CANNOT_BE_PLACED_HAS_NO_PAYMENT_METHOD = "Order %s cannot be placed, it has no payment method";
 
     public static final String ERROR_ORDER_DOES_NOT_CONTAIN_ITEM = "Order %s does not contain item %s";

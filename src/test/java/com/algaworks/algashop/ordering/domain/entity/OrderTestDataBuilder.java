@@ -6,12 +6,11 @@ import com.algaworks.algashop.ordering.domain.valueobject.Document;
 import com.algaworks.algashop.ordering.domain.valueobject.FullName;
 import com.algaworks.algashop.ordering.domain.valueobject.Money;
 import com.algaworks.algashop.ordering.domain.valueobject.Phone;
-import com.algaworks.algashop.ordering.domain.valueobject.ProductName;
 import com.algaworks.algashop.ordering.domain.valueobject.Quantity;
-import com.algaworks.algashop.ordering.domain.valueobject.ShippingInfo;
+import com.algaworks.algashop.ordering.domain.valueobject.Recipient;
+import com.algaworks.algashop.ordering.domain.valueobject.Shipping;
 import com.algaworks.algashop.ordering.domain.valueobject.ZipCode;
 import com.algaworks.algashop.ordering.domain.valueobject.id.CustomerId;
-import com.algaworks.algashop.ordering.domain.valueobject.id.ProductId;
 
 import java.time.LocalDate;
 
@@ -21,10 +20,10 @@ public class OrderTestDataBuilder {
 
     private PaymentMethod paymentMethod = PaymentMethod.GATEWAY_BALANCE;
 
-    private Money shippingCost = new Money("10.00");
-    private LocalDate expectedDeliveryDate = LocalDate.now().plusWeeks(1);
+//    private Money shippingCost = new Money("10.00");
+//    private LocalDate expectedDeliveryDate = LocalDate.now().plusWeeks(1);
 
-    private ShippingInfo shippingInfo = aShippingInfo();
+    private Shipping shipping = aShipping();
     private BillingInfo billingInfo = aBillingInfo();
 
     private boolean withItems = true;
@@ -38,7 +37,7 @@ public class OrderTestDataBuilder {
     public Order build() {
 
         Order order = Order.draft(customerId);
-        order.changeShipping(shippingInfo, shippingCost, expectedDeliveryDate);
+        order.changeShipping(shipping);
         order.changeBilling(billingInfo);
         order.changePaymentMethod(paymentMethod);
 
@@ -79,18 +78,8 @@ public class OrderTestDataBuilder {
         return this;
     }
 
-    public OrderTestDataBuilder shippingCost(Money shippingCost) {
-        this.shippingCost = shippingCost;
-        return this;
-    }
-
-    public OrderTestDataBuilder expectedDelivreDate(LocalDate expectedDeliveryDate) {
-        this.expectedDeliveryDate = expectedDeliveryDate;
-        return this;
-    }
-
-    public OrderTestDataBuilder shippingInfo(ShippingInfo shippingInfo) {
-        this.shippingInfo = shippingInfo;
+    public OrderTestDataBuilder shippingInfo(Shipping shipping) {
+        this.shipping = shipping;
         return this;
     }
 
@@ -115,12 +104,16 @@ public class OrderTestDataBuilder {
 
     //
 
-    public static ShippingInfo aShippingInfo() {
+    public static Shipping aShipping() {
 
-        return ShippingInfo.newShipping()
-                .fullName(new FullName("John", "Snow"))
-                .document(new Document("225-09-1992"))
-                .phone(new Phone("123-111-9911"))
+        return Shipping.builder()
+                .cost(new Money("10"))
+                .expectedDate(LocalDate.now().plusWeeks(1))
+                .recipient(Recipient.builder()
+                        .fullName(new FullName("John", "Snow"))
+                        .document(new Document("225-09-1992"))
+                        .phone(new Phone("123-111-9911"))
+                        .build())
                 .address(anAddres())
                 .build();
     }
@@ -146,4 +139,32 @@ public class OrderTestDataBuilder {
                 .state("South Caroline")
                 .zipCode(new ZipCode("79911")).build();
     }
+
+    public static Shipping aShippingAlt() {
+
+        return Shipping.builder()
+                .cost(new Money("200"))
+                .expectedDate(LocalDate.now().plusWeeks(2))
+                .recipient(Recipient.builder()
+                        .fullName(new FullName("Mary", "Jones"))
+                        .document(new Document("552-11-4333"))
+                        .phone(new Phone("54-454-1144"))
+                        .build())
+                .address(anAddresAlt())
+                .build();
+    }
+
+
+    public static Address anAddresAlt() {
+
+        return Address.builder()
+                .street("Sansome Street")
+                .number("875")
+                .complement("apt. 11")
+                .neighbordhood("Sansome")
+                .city("San Francisco")
+                .state("Californai")
+                .zipCode(new ZipCode("08040")).build();
+    }
+
 }
