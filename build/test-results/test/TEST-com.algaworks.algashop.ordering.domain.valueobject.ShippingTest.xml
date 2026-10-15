@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.valueobject.ShippingTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-15T01:28:12.589Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.001">
+<testsuite name="com.algaworks.algashop.ordering.domain.valueobject.ShippingTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-15T02:17:09.675Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.001">
   <properties/>
   <testcase name="given_validShippingInfo_shouldGenerateNewShippingInfo()" classname="com.algaworks.algashop.ordering.domain.valueobject.ShippingTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

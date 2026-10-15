@@ -1,8 +1,9 @@
 package com.algaworks.algashop.ordering.domain.entity;
 
 import com.algaworks.algashop.ordering.domain.valueobject.Address;
-import com.algaworks.algashop.ordering.domain.valueobject.BillingInfo;
+import com.algaworks.algashop.ordering.domain.valueobject.Billing;
 import com.algaworks.algashop.ordering.domain.valueobject.Document;
+import com.algaworks.algashop.ordering.domain.valueobject.Email;
 import com.algaworks.algashop.ordering.domain.valueobject.FullName;
 import com.algaworks.algashop.ordering.domain.valueobject.Money;
 import com.algaworks.algashop.ordering.domain.valueobject.Phone;
@@ -24,21 +25,20 @@ public class OrderTestDataBuilder {
 //    private LocalDate expectedDeliveryDate = LocalDate.now().plusWeeks(1);
 
     private Shipping shipping = aShipping();
-    private BillingInfo billingInfo = aBillingInfo();
+    private Billing billing = aBilling();
 
     private boolean withItems = true;
 
     private OrderStatus status = OrderStatus.DRAFT;
 
     private OrderTestDataBuilder() {
-
     }
 
     public Order build() {
 
         Order order = Order.draft(customerId);
         order.changeShipping(shipping);
-        order.changeBilling(billingInfo);
+        order.changeBilling(billing);
         order.changePaymentMethod(paymentMethod);
 
         if (withItems) {
@@ -78,13 +78,13 @@ public class OrderTestDataBuilder {
         return this;
     }
 
-    public OrderTestDataBuilder shippingInfo(Shipping shipping) {
+    public OrderTestDataBuilder shipping(Shipping shipping) {
         this.shipping = shipping;
         return this;
     }
 
-    public OrderTestDataBuilder billingInfo(BillingInfo billingInfo) {
-        this.billingInfo = billingInfo;
+    public OrderTestDataBuilder billing(Billing billing) {
+        this.billing = billing;
         return this;
     }
 
@@ -103,7 +103,6 @@ public class OrderTestDataBuilder {
     }
 
     //
-
     public static Shipping aShipping() {
 
         return Shipping.builder()
@@ -118,12 +117,13 @@ public class OrderTestDataBuilder {
                 .build();
     }
 
-    public static BillingInfo aBillingInfo() {
+    public static Billing aBilling() {
 
-        return BillingInfo.newBilling()
+        return Billing.builder()
                 .fullName(new FullName("John", "Snow"))
                 .document(new Document("225-09-1992"))
                 .phone(new Phone("123-111-9911"))
+                .email(new Email("john.snow@gmail.com"))
                 .address(anAddres())
                 .build();
     }
@@ -153,7 +153,6 @@ public class OrderTestDataBuilder {
                 .address(anAddresAlt())
                 .build();
     }
-
 
     public static Address anAddresAlt() {
 
