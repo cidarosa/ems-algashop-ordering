@@ -59,9 +59,8 @@ public class OrderItem {
         );
 
         orderItem.recalculateTotals();
+
         return orderItem;
-
-
     }
 
     void changeQuantity(Quantity quantity) {

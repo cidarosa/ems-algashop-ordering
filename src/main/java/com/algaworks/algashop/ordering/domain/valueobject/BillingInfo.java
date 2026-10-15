@@ -13,7 +13,6 @@ public record BillingInfo(
 ) {
 
     public BillingInfo {
-
         Objects.requireNonNull(fullName);
         Objects.requireNonNull(document);
         Objects.requireNonNull(phone);

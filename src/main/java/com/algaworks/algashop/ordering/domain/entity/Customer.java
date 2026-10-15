@@ -55,51 +55,6 @@ public class Customer {
                 address);
     }
 
-//    public Customer(CustomerId id, FullName fullName, BirthDate birthDate,
-//                    Email email, Phone phone, Document document,
-//                    Boolean promotionNotificationAllowed,
-//                    OffsetDateTime registeredAt, Address address) {
-//        this.setId(id);
-//        this.setFullName(fullName);
-//        this.setBirthDate(birthDate);
-//        this.setEmail(email);
-//        this.setPhone(phone);
-//        this.setDocument(document);
-//        this.setPromotionNotificationAllowed(promotionNotificationAllowed);
-//        this.setRegisteredAt(registeredAt);
-//        this.setArchived(false);
-//        this.setLoyaltyPoints(LoyaltyPoints.ZERO);
-//        this.setAddress(address);
-//    }
-
-    //cliente existente
-    // Static Factory Method
-//    @Builder(builderClassName = "ExistingCustomerBuild", builderMethodName = "existing")
-//    private static Customer createExisting(CustomerId id, FullName fullName, BirthDate birthDate,
-//                                           Email email, Phone phone,
-//                                           Document document,
-//                                           Boolean promotionNotificationAllowed,
-//                                           Boolean archived, OffsetDateTime registeredAt,
-//                                           OffsetDateTime archivedAt,
-//                                           LoyaltyPoints loyaltyPoints,
-//                                           Address address) {
-//        return new Customer(
-//                id,
-//                fullName,
-//                birthDate,
-//                email,
-//                phone,
-//                document,
-//                promotionNotificationAllowed,
-//                archived,
-//                registeredAt,
-//                archivedAt,
-//                loyaltyPoints,
-//                address
-//        );
-//    }
-
-    //substitui o factory method
     @Builder(builderClassName = "ExistingCustomerBuild", builderMethodName = "existing")
     private Customer(CustomerId id, FullName fullName, BirthDate birthDate,
                      Email email, Phone phone,
@@ -123,16 +78,15 @@ public class Customer {
         this.setAddress(address);
     }
 
-
     public void addLoyaltyPoints(LoyaltyPoints loyaltyPointsAdded) {
 
-        verifyIfChangeble();
+        verifyIfChangeable();
         this.setLoyaltyPoints(this.loyaltyPoints().add(loyaltyPointsAdded));
     }
 
     public void archive() {
 
-        verifyIfChangeble();
+        verifyIfChangeable();
         this.setArchived(true);
         this.setArchivedAt(OffsetDateTime.now());
         this.setFullName(new FullName("Anonymous", "Anonymous"));
@@ -142,8 +96,6 @@ public class Customer {
         this.setBirthDate(null);
         this.setPromotionNotificationAllowed(false);
 
-//        Address.AddressBuilder addressBuilder = this.address.toBuilder();
-//        this.setAddress(addressBuilder.number("Anonymized").complement(null).build());
         this.setAddress(this.address().toBuilder()
                 .number("Anonymized")
                 .complement(null).
@@ -151,42 +103,36 @@ public class Customer {
     }
 
     public void enablePromotionNotifications() {
-        verifyIfChangeble();
+        verifyIfChangeable();
         this.setPromotionNotificationAllowed(true);
     }
 
     public void disablePromotionNotifications() {
-        verifyIfChangeble();
+        verifyIfChangeable();
         this.setPromotionNotificationAllowed(false);
     }
 
     public void changeName(FullName fullName) {
-        verifyIfChangeble();
+        verifyIfChangeable();
         this.setFullName(fullName);
     }
 
     public void changeEmail(Email email) {
-        verifyIfChangeble();
+        verifyIfChangeable();
         this.setEmail(email);
     }
 
     public void changePhone(Phone phone) {
-        verifyIfChangeble();
+        verifyIfChangeable();
         this.setPhone(phone);
     }
 
     public void changeAddress(Address address) {
-        verifyIfChangeble();
+        verifyIfChangeable();
         this.setAddress(address);
 
-    }
-    //---
+    } //---
 
-    public Document document() {
-        return document;
-    }
-
-    // metodos getters similar aos records
     public CustomerId id() {
         return id;
     }
@@ -205,6 +151,10 @@ public class Customer {
 
     public Phone phone() {
         return phone;
+    }
+
+    public Document document() {
+        return document;
     }
 
     public Boolean isPromotionNotificationAllowed() {
@@ -230,9 +180,8 @@ public class Customer {
     public Address address() {
         return address;
     }
-
+    // ---
     private void setId(CustomerId id) {
-
         Objects.requireNonNull(id);
         this.id = id;
     }
@@ -243,7 +192,6 @@ public class Customer {
     }
 
     private void setBirthDate(BirthDate birthDate) {
-
         if (birthDate == null) {
             this.birthDate = null;
             return;
@@ -265,7 +213,7 @@ public class Customer {
     }
 
     private void setDocument(Document document) {
-
+        Objects.requireNonNull(document);
         this.document = document;
     }
 
@@ -309,7 +257,7 @@ public class Customer {
         this.address = address;
     }
 
-    private void verifyIfChangeble() {
+    private void verifyIfChangeable() {
         if (this.isArchived()) {
             throw new CustomerArchivedException();
         }

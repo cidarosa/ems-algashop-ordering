@@ -10,8 +10,9 @@ class MoneyTest {
     @Test
     void given_validMoneyValue_shouldGenerateValue() {
 
-        Money money = new Money(BigDecimal.valueOf(10.0));
-        Assertions.assertThat(money.value().compareTo(BigDecimal.valueOf(10.0)));
+        Money money = new Money("10");
+//        Assertions.assertThat(money.value().compareTo(BigDecimal.valueOf(10.0)));
+        Assertions.assertThat(money.value()).isEqualTo("10.00");
     }
 
     @Test

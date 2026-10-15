@@ -16,9 +16,9 @@ public record Phone(String value) {
             throw new IllegalArgumentException(VALIDATION_ERROR_PHONE_IS_BLANK);
         }
 
-        if (value.trim().isEmpty()){
-            throw new IllegalArgumentException(VALIDATION_ERROR_PHONE_IS_EMPTY);
-        }
+//        if (value.trim().isEmpty()){
+//            throw new IllegalArgumentException(VALIDATION_ERROR_PHONE_IS_EMPTY);
+//        }
 
         this.value = value;
     }

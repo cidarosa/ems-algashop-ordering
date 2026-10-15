@@ -134,7 +134,7 @@ public class OrderTestDataBuilder {
                 .street("Bourbon Street")
                 .number("1234")
                 .complement("apt. 11")
-                .neighbordhood("North Ville")
+                .neighborhood("North Ville")
                 .city("Montfort")
                 .state("South Caroline")
                 .zipCode(new ZipCode("79911")).build();
@@ -161,7 +161,7 @@ public class OrderTestDataBuilder {
                 .street("Sansome Street")
                 .number("875")
                 .complement("apt. 11")
-                .neighbordhood("Sansome")
+                .neighborhood("Sansome")
                 .city("San Francisco")
                 .state("Californai")
                 .zipCode(new ZipCode("08040")).build();

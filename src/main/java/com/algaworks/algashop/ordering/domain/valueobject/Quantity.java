@@ -20,17 +20,17 @@ public record Quantity(Integer value) implements Comparable<Quantity> {
         this.value = value;
     }
 
-    public Quantity add(Integer value){
-        return add(new Quantity(value));
-    }
+//    public Quantity add(Integer value){
+//        return add(new Quantity(value));
+//    }
 
     public Quantity add(Quantity quantity) {
 
         Objects.requireNonNull(quantity);
 
-        if (quantity.value() < 0) {
-            throw new IllegalArgumentException();
-        }
+//        if (quantity.value() < 0) {
+//            throw new IllegalArgumentException();
+//        }
         return new Quantity(this.value + quantity.value());
     }
 

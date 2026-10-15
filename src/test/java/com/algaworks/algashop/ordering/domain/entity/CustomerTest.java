@@ -58,7 +58,7 @@ class CustomerTest {
                         Address.builder()
                                 .street("Bourbon Street")
                                 .number("Anonymized")
-                                .neighbordhood("North Ville")
+                                .neighborhood("North Ville")
                                 .city("York")
                                 .state("South California")
                                 .zipCode(new ZipCode("12345"))

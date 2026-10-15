@@ -11,7 +11,7 @@ import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VAL
 
 public record Money(BigDecimal value) implements Comparable<Money> {
 
-    private static final RoundingMode roundingMode = RoundingMode.HALF_EVEN;
+    private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_EVEN;
 
     public static final Money ZERO = new Money(BigDecimal.ZERO);
 
@@ -19,7 +19,7 @@ public record Money(BigDecimal value) implements Comparable<Money> {
 
         Objects.requireNonNull(value, VALIDATION_ERROR_MONEY_IS_NULL);
 
-        if (value == null || value.isBlank()){
+        if (value.isBlank()){
             throw new IllegalArgumentException();
         }
 
@@ -30,7 +30,7 @@ public record Money(BigDecimal value) implements Comparable<Money> {
 
         Objects.requireNonNull(value, VALIDATION_ERROR_MONEY_IS_NULL);
 
-        this.value = value.setScale(2, roundingMode);
+        this.value = value.setScale(2, ROUNDING_MODE);
 
         if (this.value.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException(VALIDATION_ERROR_MONEY_IS_NEGATIVE);
@@ -64,7 +64,7 @@ public record Money(BigDecimal value) implements Comparable<Money> {
         if (money.value().compareTo(BigDecimal.ZERO) == 0){
             throw new IllegalArgumentException();
         }
-        return new Money(this.value.divide(money.value(), 2, roundingMode));
+        return new Money(this.value.divide(money.value(), 2, ROUNDING_MODE));
     }
 
     @Override

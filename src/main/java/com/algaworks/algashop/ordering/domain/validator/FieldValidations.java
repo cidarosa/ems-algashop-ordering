@@ -14,12 +14,12 @@ public class FieldValidations {
         requireNonBlank(value, "");
 
     }
-    public static void requireNonBlank(String value, String messageError){
+    public static void requireNonBlank(String value, String errorMessage){
 
         Objects.requireNonNull(value);
 
         if (value.isBlank()){
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(errorMessage);
         }
 
     }

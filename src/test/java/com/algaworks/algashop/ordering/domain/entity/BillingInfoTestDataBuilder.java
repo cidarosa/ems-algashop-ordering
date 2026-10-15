@@ -21,7 +21,7 @@ public class BillingInfoTestDataBuilder {
                 address(Address.builder()
                         .street("Bourbon Street")
                         .number("1134")
-                        .neighbordhood("North Ville")
+                        .neighborhood("North Ville")
                         .city("York")
                         .state("South California")
                         .zipCode(new ZipCode("12345"))

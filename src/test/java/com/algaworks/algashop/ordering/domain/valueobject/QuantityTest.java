@@ -33,7 +33,7 @@ class QuantityTest {
 
         Quantity quantity = new Quantity(10);
 
-        Assertions.assertThat(quantity.add(10).value()).isEqualTo(20);
+        Assertions.assertThat(quantity.add(new Quantity(10)).value()).isEqualTo(20);
     }
 
 }

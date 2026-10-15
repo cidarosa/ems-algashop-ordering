@@ -10,7 +10,7 @@ public record Address(
         String street,
         String number,
         String complement,
-        String neighbordhood,
+        String neighborhood,
         String city,
         String state,
         ZipCode zipCode
@@ -20,7 +20,7 @@ public record Address(
 
         FieldValidations.requireNonBlank(street);
         FieldValidations.requireNonBlank(number);
-        FieldValidations.requireNonBlank(neighbordhood);
+        FieldValidations.requireNonBlank(neighborhood);
         FieldValidations.requireNonBlank(city);
         FieldValidations.requireNonBlank(state);
 

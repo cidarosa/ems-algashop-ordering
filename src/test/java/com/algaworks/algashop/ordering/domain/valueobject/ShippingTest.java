@@ -28,7 +28,7 @@ class ShippingTest {
                                 .street("Bourbon Street")
                                 .number("1234")
                                 .complement("apt. 11")
-                                .neighbordhood("North Ville")
+                                .neighborhood("North Ville")
                                 .city("Montfort")
                                 .state("South Caroline")
                                 .zipCode(new ZipCode("79911")).build())
