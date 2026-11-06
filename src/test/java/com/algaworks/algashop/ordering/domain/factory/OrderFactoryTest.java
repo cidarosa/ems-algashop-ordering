@@ -40,7 +40,5 @@ class OrderFactoryTest {
 
         order.place();
         Assertions.assertThat(order.isPlaced()).isTrue();
-
     }
-
 }

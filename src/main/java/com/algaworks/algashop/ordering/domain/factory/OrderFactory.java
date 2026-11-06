@@ -13,7 +13,6 @@ import java.util.Objects;
 public class OrderFactory {
 
     private OrderFactory() {
-
     }
 
     public static Order filled(
@@ -39,9 +38,5 @@ public class OrderFactory {
         order.addItem(product, productQuantity);
 
         return order;
-
-
     }
-
-
 }

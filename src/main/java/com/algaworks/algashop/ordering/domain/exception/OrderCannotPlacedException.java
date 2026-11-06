@@ -2,7 +2,10 @@ package com.algaworks.algashop.ordering.domain.exception;
 
 import com.algaworks.algashop.ordering.domain.valueobject.id.OrderId;
 
-import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.*;
+import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.ERROR_ORDER_CANNOT_BE_PLACED_HAS_NO_BILLING_INFO;
+import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.ERROR_ORDER_CANNOT_BE_PLACED_HAS_NO_ITEMS;
+import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.ERROR_ORDER_CANNOT_BE_PLACED_HAS_NO_PAYMENT_METHOD;
+import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.ERROR_ORDER_CANNOT_BE_PLACED_HAS_NO_SHIPPING_INFO;
 
 public class OrderCannotPlacedException extends DomainException {
 

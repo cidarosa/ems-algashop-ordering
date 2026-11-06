@@ -21,9 +21,6 @@ public class OrderTestDataBuilder {
 
     private PaymentMethod paymentMethod = PaymentMethod.GATEWAY_BALANCE;
 
-//    private Money shippingCost = new Money("10.00");
-//    private LocalDate expectedDeliveryDate = LocalDate.now().plusWeeks(1);
-
     private Shipping shipping = aShipping();
     private Billing billing = aBilling();
 
@@ -54,7 +51,7 @@ public class OrderTestDataBuilder {
             }
             case PAID -> {
                 order.place();
-                ;
+
                 order.markAsPaid();
             }
             case READY -> {
@@ -102,7 +99,6 @@ public class OrderTestDataBuilder {
         return new OrderTestDataBuilder();
     }
 
-    //
     public static Shipping aShipping() {
 
         return Shipping.builder()

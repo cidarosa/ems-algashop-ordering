@@ -1,5 +1,6 @@
 package com.algaworks.algashop.ordering.domain.entity;
 
+import com.algaworks.algashop.ordering.domain.exception.OrderCannotBeEditedException;
 import com.algaworks.algashop.ordering.domain.exception.OrderCannotPlacedException;
 import com.algaworks.algashop.ordering.domain.exception.OrderDoesNotContainOrderItemException;
 import com.algaworks.algashop.ordering.domain.exception.OrderInvalidShippingDeliveryDateException;
@@ -92,6 +93,8 @@ public class Order {
         Objects.requireNonNull(product);
         Objects.requireNonNull(quantity);
 
+        this.verifyIfChangeable();
+
         product.checkOutOfStock();
 
         OrderItem orderItem = OrderItem.brandNew()
@@ -119,6 +122,7 @@ public class Order {
     }
 
     public void markAsPaid() {
+
         this.setPaidAt(OffsetDateTime.now());
         this.changeStatus(OrderStatus.PAID);
     }
@@ -127,17 +131,24 @@ public class Order {
 
         Objects.requireNonNull(paymentMethod);
         this.setPaymentMethod(paymentMethod);
+
+        this.verifyIfChangeable();
     }
 
     public void changeBilling(Billing billing) {
 
         Objects.requireNonNull(billing);
+
+        this.verifyIfChangeable();
+
         this.setBilling(billing);
     }
 
     public void changeShipping(Shipping newShipping) {
 
         Objects.requireNonNull(newShipping);
+
+        this.verifyIfChangeable();
 
         if ( newShipping.expectedDate().isBefore(LocalDate.now())) {
             throw new OrderInvalidShippingDeliveryDateException(this.id());
@@ -151,6 +162,8 @@ public class Order {
 
         Objects.requireNonNull(orderItemId);
         Objects.requireNonNull(quantity);
+
+        this.verifyIfChangeable();
 
         OrderItem orderItem = this.findOrderItem(orderItemId);
         orderItem.changeQuantity(quantity);
@@ -226,6 +239,7 @@ public class Order {
     // privates
 
     private void recalculateTotals() {
+
         BigDecimal totalItemsAmount = this.items().stream().map(i -> i.totalAmount().value())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
@@ -272,6 +286,13 @@ public class Order {
         if (this.items() == null || this.items().isEmpty()) {
             throw OrderCannotPlacedException.noItem(this.id);
         }
+    }
+
+    private void verifyIfChangeable(){
+
+         if(!this.isDraft()){
+             throw new OrderCannotBeEditedException(this.id, this.status);
+         }
     }
 
     private OrderItem findOrderItem(OrderItemId orderItemId) {
