@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class OrderChangingTest {
 
     @Test
-    void givenDraftOrder_WhenDataChanged_shouldNotThrowException() {
+    void givenDraftOrder_whenDataChanged_shouldNotThrowException() {
 
         Order draftOrder = OrderTestDataBuilder.anOrder().build();
 

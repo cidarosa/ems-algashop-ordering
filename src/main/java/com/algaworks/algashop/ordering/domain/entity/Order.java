@@ -305,6 +305,17 @@ public class Order {
                 .orElseThrow(() -> new OrderDoesNotContainOrderItemException(this.id(), orderItemId));
     }
 
+    public void removeItem(OrderItemId orderItemId){
+
+        Objects.requireNonNull(orderItemId);
+        this.verifyIfChangeable();
+
+        OrderItem orderItem = findOrderItem(orderItemId);
+        this.items.remove(orderItem);
+
+        this.recalculateTotals();
+    }
+
     //setters - private
     private void setId(OrderId id) {
         Objects.requireNonNull(id);
