@@ -268,7 +268,7 @@ public class Order {
         Objects.requireNonNull(newStatus);
 
         if (this.status().canNotChangeTo(newStatus)) {
-            throw new OrderStatusCannotBeChangedException(this.id(), this.status(), newStatus);
+            throw   new OrderStatusCannotBeChangedException(this.id(), this.status(), newStatus);
         }
 
         this.setStatus(newStatus);
@@ -321,7 +321,7 @@ public class Order {
         this.recalculateTotals();
     }
 
-    private void markAsReady(){
+    public void markAsReady(){
 
         this.changeStatus(OrderStatus.READY);
         this.setReadyAt(OffsetDateTime.now());

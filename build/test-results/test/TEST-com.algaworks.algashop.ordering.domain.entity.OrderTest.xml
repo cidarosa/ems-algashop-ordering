@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-09T18:49:00.470Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.036">
+<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-11-09T22:21:28.915Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.011">
   <properties/>
-  <testcase name="giveDraftOrder_whenChangePaymentMethod_shouldAllowChange()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.033"/>
+  <testcase name="shouldGenerateDraftOrder()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.0"/>
+  <testcase name="givenOrderDraft_whenChangeShipping_shouldAllowChange()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.001"/>
+  <testcase name="givenPlaceOrder_whenTryToPlace_shouldGenerateException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.001"/>
+  <testcase name="givenDraftOrder_whenPlace_shouldChangeToPlace()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.0"/>
+  <testcase name="givenPlacedOrder_whenMarkPaid_shouldChangeToPaid()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.0"/>
+  <testcase name="souldAddItem()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.003"/>
+  <testcase name="givenOrderDraftAndDeliveryDateInThePast_whenTryChangeShipping_shouldNotAllowChange()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.001"/>
+  <testcase name="giveDraftOrder_whenChangePaymentMethod_shouldAllowChange()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.0"/>
+  <testcase name="shouldGenerateExceptionsWhenTryToChangeItemSet()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.001"/>
+  <testcase name="givenDraftOrder_whenChangeItem_shoudRecalculate()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.0"/>
+  <testcase name="giveDraftOrder_whenChangeBilling_shouldAllowChange()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.0"/>
+  <testcase name="givenOutOfStockProdut_whenTryAddToAnOrder_shouldNotAllow()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.0"/>
+  <testcase name="shouldCalculateTotals()" classname="com.algaworks.algashop.ordering.domain.entity.OrderTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
