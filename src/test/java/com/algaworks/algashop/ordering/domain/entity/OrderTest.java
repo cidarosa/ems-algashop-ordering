@@ -55,6 +55,9 @@ class OrderTest {
         Product product = ProductTestDataBuilder.aProductAltMousePad().build();
         ProductId productId = product.id();
 
+        Assertions.assertThat(order.items()).isEmpty();
+        Assertions.assertThat(order.items().size()).isEqualTo(0);
+
         order.addItem(product, new Quantity(1));
 
         Assertions.assertThat(order.items()).isNotEmpty();
@@ -135,6 +138,9 @@ class OrderTest {
     void giveDraftOrder_whenChangePaymentMethod_shouldAllowChange() {
 
         Order order = Order.draft(new CustomerId());
+
+        Assertions.assertThat(order.paymentMethod()).isNull();
+
         order.changePaymentMethod(PaymentMethod.CREDIT_CARD);
         Assertions.assertThat(order.paymentMethod()).isEqualTo(PaymentMethod.CREDIT_CARD);
     }
@@ -145,6 +151,8 @@ class OrderTest {
         Billing billing = OrderTestDataBuilder.aBilling();
 
         Order order = Order.draft(new CustomerId());
+        Assertions.assertThat(order.billing()).isNull();
+
         order.changeBilling(billing);
 
         Assertions.assertThat(order.billing()).isEqualTo(billing);
@@ -156,11 +164,20 @@ class OrderTest {
         Shipping shipping = OrderTestDataBuilder.aShipping();
 
         Order order = Order.draft(new CustomerId());
+        Assertions.assertThat(order.shipping()).isNull();
+
         order.changeShipping(shipping);
 
         Assertions.assertWith(order,
                 o -> Assertions.assertThat(o.shipping()).isEqualTo(shipping));
+
+        Shipping shippingAlt = OrderTestDataBuilder.aShippingAlt();
+        order.changeShipping(shippingAlt);
+
+        Assertions.assertWith(order,
+                o -> Assertions.assertThat(o.shipping()).isEqualTo(shippingAlt));
     }
+
 
     @Test
     void givenOrderDraftAndDeliveryDateInThePast_whenTryChangeShipping_shouldNotAllowChange() {

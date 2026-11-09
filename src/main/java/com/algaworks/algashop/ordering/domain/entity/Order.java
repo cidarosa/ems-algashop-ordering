@@ -130,9 +130,10 @@ public class Order {
     public void changePaymentMethod(PaymentMethod paymentMethod) {
 
         Objects.requireNonNull(paymentMethod);
-        this.setPaymentMethod(paymentMethod);
 
         this.verifyIfChangeable();
+
+        this.setPaymentMethod(paymentMethod);
     }
 
     public void changeBilling(Billing billing) {
@@ -181,6 +182,10 @@ public class Order {
 
     public boolean isPaid() {
         return OrderStatus.PAID.equals(this.status());
+    }
+
+    public boolean isReady(){
+        return OrderStatus.READY.equals(this.status());
     }
 
     //getters - record Style
@@ -314,6 +319,12 @@ public class Order {
         this.items.remove(orderItem);
 
         this.recalculateTotals();
+    }
+
+    private void markAsReady(){
+
+        this.changeStatus(OrderStatus.READY);
+        this.setReadyAt(OffsetDateTime.now());
     }
 
     //setters - private

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderRemoveItemTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-08T18:54:19.454Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.002">
-  <properties/>
-  <testcase name="givenDraftOrder_whenRemoveItemIsCalled_shouldRemoveItemAndRecalculate()" classname="com.algaworks.algashop.ordering.domain.entity.OrderRemoveItemTest" time="0.0"/>
-  <testcase name="givenPlaceOrder_whenTryRemoveItem_shouldThrowException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderRemoveItemTest" time="0.0"/>
-  <testcase name="givenDraftOrder_whenTryToRemoveNoExistingItem_shouldThrowException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderRemoveItemTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
