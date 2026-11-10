@@ -87,6 +87,5 @@ public class OrderChangingTest {
         Assertions.assertThatThrownBy(
                         () -> placeOrder.changePaymentMethod(method))
                 .isInstanceOf(OrderCannotBeEditedException.class);
-
     }
 }

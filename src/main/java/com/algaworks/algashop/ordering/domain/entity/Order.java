@@ -127,6 +127,12 @@ public class Order {
         this.changeStatus(OrderStatus.PAID);
     }
 
+    public void markAsReady() {
+
+        this.changeStatus(OrderStatus.READY);
+        this.setReadyAt(OffsetDateTime.now());
+    }
+
     public void changePaymentMethod(PaymentMethod paymentMethod) {
 
         Objects.requireNonNull(paymentMethod);
@@ -151,7 +157,7 @@ public class Order {
 
         this.verifyIfChangeable();
 
-        if ( newShipping.expectedDate().isBefore(LocalDate.now())) {
+        if (newShipping.expectedDate().isBefore(LocalDate.now())) {
             throw new OrderInvalidShippingDeliveryDateException(this.id());
         }
 
@@ -184,8 +190,12 @@ public class Order {
         return OrderStatus.PAID.equals(this.status());
     }
 
-    public boolean isReady(){
+    public boolean isReady() {
         return OrderStatus.READY.equals(this.status());
+    }
+
+    public boolean isCanceled() {
+        return OrderStatus.CANCELED.equals(this.status);
     }
 
     //getters - record Style
@@ -241,6 +251,22 @@ public class Order {
         return Collections.unmodifiableSet(this.items);
     }
 
+    public void removeItem(OrderItemId orderItemId) {
+
+        Objects.requireNonNull(orderItemId);
+        this.verifyIfChangeable();
+
+        OrderItem orderItem = findOrderItem(orderItemId);
+        this.items.remove(orderItem);
+
+        this.recalculateTotals();
+    }
+
+    public void cancel() {
+        this.setCalceledAt(OffsetDateTime.now());
+        this.changeStatus(OrderStatus.CANCELED);
+    }
+
     // privates
 
     private void recalculateTotals() {
@@ -268,7 +294,7 @@ public class Order {
         Objects.requireNonNull(newStatus);
 
         if (this.status().canNotChangeTo(newStatus)) {
-            throw   new OrderStatusCannotBeChangedException(this.id(), this.status(), newStatus);
+            throw new OrderStatusCannotBeChangedException(this.id(), this.status(), newStatus);
         }
 
         this.setStatus(newStatus);
@@ -293,11 +319,11 @@ public class Order {
         }
     }
 
-    private void verifyIfChangeable(){
+    private void verifyIfChangeable() {
 
-         if(!this.isDraft()){
-             throw new OrderCannotBeEditedException(this.id, this.status);
-         }
+        if (!this.isDraft()) {
+            throw new OrderCannotBeEditedException(this.id, this.status);
+        }
     }
 
     private OrderItem findOrderItem(OrderItemId orderItemId) {
@@ -308,23 +334,6 @@ public class Order {
                 .filter(i -> i.id().equals(orderItemId))
                 .findFirst()
                 .orElseThrow(() -> new OrderDoesNotContainOrderItemException(this.id(), orderItemId));
-    }
-
-    public void removeItem(OrderItemId orderItemId){
-
-        Objects.requireNonNull(orderItemId);
-        this.verifyIfChangeable();
-
-        OrderItem orderItem = findOrderItem(orderItemId);
-        this.items.remove(orderItem);
-
-        this.recalculateTotals();
-    }
-
-    public void markAsReady(){
-
-        this.changeStatus(OrderStatus.READY);
-        this.setReadyAt(OffsetDateTime.now());
     }
 
     //setters - private

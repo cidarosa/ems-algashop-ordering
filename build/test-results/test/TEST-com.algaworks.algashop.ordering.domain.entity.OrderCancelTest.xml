@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderCancelTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-10T00:30:01.812Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.011">
+  <properties/>
+  <testcase name="givenDraftOrder_whenCancel_shouldBeCanceled()" classname="com.algaworks.algashop.ordering.domain.entity.OrderCancelTest" time="0.007"/>
+  <testcase name="givenPlacedOrder_whenCancel_shouldBeCanceled()" classname="com.algaworks.algashop.ordering.domain.entity.OrderCancelTest" time="0.001"/>
+  <testcase name="givenPlaidOrder_whenCancel_shouldBeCanceled()" classname="com.algaworks.algashop.ordering.domain.entity.OrderCancelTest" time="0.001"/>
+  <testcase name="givenCanceledOrder_whenTryCancel_shouldThrowException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderCancelTest" time="0.001"/>
+  <testcase name="givenReadyOrder_whenCancel_shouldBeCanceled()" classname="com.algaworks.algashop.ordering.domain.entity.OrderCancelTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
