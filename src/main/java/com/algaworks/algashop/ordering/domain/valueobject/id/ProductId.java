@@ -12,11 +12,11 @@ public record ProductId(UUID value) {
     }
 
     public ProductId() {
-        this(IdGenerator.generateTimBasedUUID());
+        this(IdGenerator.generateTimeBasedUUID());
     }
 
     @Override
     public String toString() {
-        return  value.toString();
+        return value.toString();
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-11-17T20:59:44.535Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.013">
+  <properties/>
+  <testcase name="givenEmptyCart_whenAddNewItem_shouldContainItemAndRecalculateTotal()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.001"/>
+  <testcase name="givenCartWithItems_whenChangeQuntityToZero_shouldThrowIllegalArgumentException()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.0"/>
+  <testcase name="givenCartWithItems_whenChangeItemPrice_shouldRecalculateTotalAmount()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.001"/>
+  <testcase name="givenCustomer_whenStartShopping_shouldInitializeEmptyCart()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.001"/>
+  <testcase name="givenCartWithExistingProduto_whenAddSameProduct_shoulIncrementQuantity()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.0"/>
+  <testcase name="givenCartWitItems_whenRemoveEixstingItem_shouldRemoveAndRecalculateTotals()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.002"/>
+  <testcase name="givenCartWithItems_whenEmpty_shouldClearAllItemsAndResetTotal()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.001"/>
+  <testcase name="givenCartWithItems_whenChangeItemQuantity_shouldRecalculateTotalItemns()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.001"/>
+  <testcase name="givenCartWithItems_whenDetectUnavailableItems_shoulReturnTrue()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.001"/>
+  <testcase name="givenCartWithItems_whenFindItemById_shouldReturnItem()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.0"/>
+  <testcase name="givenDifferentIds_whenCompareItems_shouldNotBeEqaul()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.0"/>
+  <testcase name="givenCartWithItems_whenRemoveNonExistingItem_shouldThrowShoppingCartDoesNotContainItemException()" classname="com.algaworks.algashop.ordering.domain.entity.ShoppingCartTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

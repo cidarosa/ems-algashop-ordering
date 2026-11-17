@@ -8,14 +8,15 @@ import java.util.UUID;
 
 public class IdGenerator {
 
-    private static final TimeBasedEpochRandomGenerator timeBaseEpochRandomGererator = Generators.timeBasedEpochRandomGenerator();
+    private static final TimeBasedEpochRandomGenerator timeBaseEpochRandomGererator
+            = Generators.timeBasedEpochRandomGenerator();
 
-    private static final TSID.Factory tsidFactory = TSID.Factory.INSTANCE;
+    private static final TSID.Factory  tsidFactory = TSID.Factory.INSTANCE;
 
     private IdGenerator() {
     }
 
-    public static UUID generateTimBasedUUID() {
+    public static UUID generateTimeBasedUUID() {
         return timeBaseEpochRandomGererator.generate();
     }
 
@@ -29,5 +30,8 @@ public class IdGenerator {
     public static TSID generateTSID() {
         return tsidFactory.generate();
     }
+
+
+
 }
 

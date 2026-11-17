@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderMarkAsReadyTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-10T00:30:01.833Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.005">
+<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderMarkAsReadyTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-17T20:59:44.505Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.005">
   <properties/>
   <testcase name="givenPlaceOrder_whenTryMarkAsReady_shouldTryException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderMarkAsReadyTest" time="0.001"/>
-  <testcase name="givenReadyOrder_whenTryMarkAsReady_shouldTryException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderMarkAsReadyTest" time="0.001"/>
+  <testcase name="givenReadyOrder_whenTryMarkAsReady_shouldTryException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderMarkAsReadyTest" time="0.0"/>
   <testcase name="givenDraftOrder_whenTryMarkAsReady_shouldTryException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderMarkAsReadyTest" time="0.0"/>
-  <testcase name="givenPaidOrder_whenCallAskReady_shouldUpdateStatus()" classname="com.algaworks.algashop.ordering.domain.entity.OrderMarkAsReadyTest" time="0.002"/>
+  <testcase name="givenPaidOrder_whenCallAskReady_shouldUpdateStatus()" classname="com.algaworks.algashop.ordering.domain.entity.OrderMarkAsReadyTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

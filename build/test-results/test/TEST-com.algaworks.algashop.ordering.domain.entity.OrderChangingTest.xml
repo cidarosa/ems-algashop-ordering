@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-10T00:30:01.824Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.006">
+<testsuite name="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-17T20:59:44.494Z" hostname="MacBook-Pro-de-Aparecida.local" time="0.007">
   <properties/>
   <testcase name="givenPlaceOrder_whenChangeBillingIsCalled_shouldThrowOrderCannotBeEditedException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" time="0.0"/>
-  <testcase name="givenPlaceOrder_whenChangeItemQuantityIsCalled_shouldThrowOrderCannotBeEditedException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" time="0.001"/>
+  <testcase name="givenPlaceOrder_whenChangeItemQuantityIsCalled_shouldThrowOrderCannotBeEditedException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" time="0.0"/>
   <testcase name="givenPlaceOrder_whenTryAddAnItem_shouldThrowOrderCannotBeEditedException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" time="0.0"/>
-  <testcase name="givenPlaceOrder_whenChangeShippingIsCalled_shouldThrowOrderCannotBeEditedException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" time="0.001"/>
+  <testcase name="givenPlaceOrder_whenChangeShippingIsCalled_shouldThrowOrderCannotBeEditedException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" time="0.0"/>
   <testcase name="givenPlaceOrder_whenChangePaymentMethod_shouldThrowOrderCannotBeEditedException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" time="0.001"/>
-  <testcase name="givenDraftOrder_whenDataChanged_shouldNotThrowException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" time="0.002"/>
+  <testcase name="givenDraftOrder_whenDataChanged_shouldNotThrowException()" classname="com.algaworks.algashop.ordering.domain.entity.OrderChangingTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

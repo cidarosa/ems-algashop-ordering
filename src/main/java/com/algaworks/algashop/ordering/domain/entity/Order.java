@@ -274,7 +274,7 @@ public class Order {
         BigDecimal totalItemsAmount = this.items().stream().map(i -> i.totalAmount().value())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        Integer totalItemsQunatity = this.items().stream().map(i -> i.quantity().value())
+        Integer totalItemsQuantity = this.items().stream().map(i -> i.quantity().value())
                 .reduce(0, Integer::sum);
 
         BigDecimal shippingCost;
@@ -286,7 +286,7 @@ public class Order {
 
         BigDecimal totalAmount = totalItemsAmount.add(shippingCost);
         this.setTotalAmount(new Money(totalAmount));
-        this.setTotalItems(new Quantity(totalItemsQunatity));
+        this.setTotalItems(new Quantity(totalItemsQuantity));
     }
 
     private void changeStatus(OrderStatus newStatus) {
